@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2521;
+}
+
+/* Sección general */
+.why-choose-us {
+    background: linear-gradient(180deg, #eaeaea 0%, #f9f8f6 100%);
+    padding: 160px 20px;
+}
+
+.why-choose-us .section {
+    max-width: 1280px;
+    margin: auto;
+    position: relative;
+}
+
+/* Decorativos */
+.overlay,
+.corner-circle {
+    position: absolute;
+    border-radius: 9999px;
+}
+
+.overlay {
+    top: 80px;
+    right: 80px;
+    width: 128px;
+    height: 128px;
+    background-color: #1a66390d;
+}
+
+.corner-circle {
+    bottom: 80px;
+    left: 64px;
+    width: 96px;
+    height: 96px;
+    background-color: #e2dacf1a;
+}
+
+/* Encabezado */
+.heading {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.heading h2 {
+    font-size: 60px;
+    font-weight: 600;
+    color: #2c2521;
+}
+
+.heading .highlight {
+    color: #1a6639;
+    font-weight: 700;
+}
+
+.subheading {
+    font-size: 20px;
+    color: #7e7167;
+    margin-top: 12px;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.card {
+    padding: 32px;
+    min-height: 200px;
+    aspect-ratio: 3 / 2;
+    /* ← más ancho que alto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffffcc;
+    border: 1px solid #e7e1da80;
+    border-radius: 12px;
+    box-shadow: 0px 1px 2px #0000000d;
+    backdrop-filter: blur(2px);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Íconos Lucide */
+.icon-wrapper {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    background: linear-gradient(145deg, #1a6639 0%, #318153 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 20px #1a66391a;
+    transition: background 0.3s ease;
+}
+
+.card:hover .icon-wrapper {
+    background-color: #ADBAA9;
+}
+
+[data-lucide] {
+    width: 32px;
+    height: 32px;
+    color: #f9f8f6;
+    transition: transform 0.4s ease;
+}
+
+.card:hover [data-lucide] {
+    transform: translateY(-6px);
+}
+
+/* Títulos y textos */
+.card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c2521;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #7e7167;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .heading h2 {
+        font-size: 36px;
+    }
+
+    .subheading {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 32px 24px;
+    }
+
+    .icon-wrapper {
+        width: 56px;
+        height: 56px;
+    }
+
+    [data-lucide] {
+        width: 28px;
+        height: 28px;
+    }
+}

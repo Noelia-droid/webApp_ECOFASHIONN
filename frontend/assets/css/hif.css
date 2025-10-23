@@ -1,0 +1,272 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2521;
+}
+
+/* Sección principal */
+.how-it-works {
+    background-color: #f9f8f6;
+    padding: 160px 0;
+}
+
+.how-it-works .section {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0 80px;
+    position: relative;
+}
+
+/* Contenedor interno */
+.how-it-works .container {
+    max-width: 1800px;
+    margin: 0 auto;
+    overflow:hidden;
+}
+
+/* Encabezado centrado - ESTILO ORIGINAL */
+.how-it-works .heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 110px;
+}
+
+.how-it-works .text-wrapper {
+    font-size: 100px;
+    font-weight: 600;
+    color: #2c2521;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.how-it-works .text {
+    color: #196639;
+    font-weight: 700;
+}
+
+.how-it-works .un-proceso-simple-y {
+    font-size: 32px;
+    color: #7e7167;
+    margin: 0;
+    text-align: center;
+    max-width: 950px;
+    line-height: 1.5;
+}
+
+/* Grid de pasos */
+.how-it-works .container-3 {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px; 
+    align-items:stretch;
+    flex-wrap:nowrap;
+    justify-content: center;
+}
+
+/* Tarjeta individual*/
+.how-it-works .component-2 {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #e7e1da;
+    border-radius: 24px; 
+    padding: 90px 80px 70px 60px; 
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    min-height: 550px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    width: 380px; 
+    flex-shrink: 0; 
+}
+
+.how-it-works .component-2:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Círculo decorativo partido en esquina SUPERIOR DERECHA */
+.how-it-works .corner-circle {
+    position: absolute;
+    top: -50px;        
+    right: -100px;    
+    width: 180px;      
+    height: 180px;    
+    border-radius: 0 0 0 9999px;
+    background: linear-gradient(145deg, #1a6639 0%, #318153 100%);
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Círculo de ícono */
+.how-it-works .icon-circle {
+    width: 140px;
+    height: 140px;
+    background-color: #1a6639;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px; 
+    box-shadow: 0px 10px 40px rgba(26, 102, 57, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* Íconos Lucide - */
+.how-it-works [data-lucide] {
+    width: 64px;
+    height: 64px;
+    color: #ffffff;
+}
+
+/* Círculo pequeño con número  */
+.how-it-works .step-number {
+    width: 55px;
+    height: 55px;
+    background-color: #1a6639;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 2;
+    box-shadow: 0px 6px 20px rgba(26, 102, 57, 0.4);
+}
+
+
+/* Título y texto de cada paso */
+.how-it-works .text-2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c2521;
+    margin: 0 0 25px 0;
+    line-height: 1.3;
+}
+
+.how-it-works .p {
+    font-size: 18px;
+    color: #7e7167;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .how-it-works .container-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .how-it-works .component-2 {
+        min-height: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+    .how-it-works {
+        padding: 80px 0;
+    }
+    
+    .how-it-works .section {
+        padding: 0 24px;
+    }
+    
+    .how-it-works .heading {
+        margin-bottom: 60px;
+    }
+    
+    .how-it-works .text-wrapper {
+        font-size: 36px;
+    }
+    
+    .how-it-works .un-proceso-simple-y {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+    
+    .how-it-works .container-3 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .how-it-works .component-2 {
+        padding: 50px 24px 40px 24px;
+        min-height: 320px;
+    }
+    
+    .how-it-works .icon-circle {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 28px;
+    }
+    
+    .how-it-works .icon-circle [data-lucide] {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .how-it-works .corner-circle {
+        width: 100px;
+        height: 100px;
+        top: -15px;
+        right: -15px;
+    }
+    
+    .how-it-works .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        top: 16px;
+        left: 16px;
+    }
+    
+    .how-it-works .text-2 {
+        font-size: 22px;
+    }
+    
+    .how-it-works .p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .how-it-works {
+        padding: 60px 0;
+    }
+    
+    .how-it-works .heading {
+        margin-bottom: 50px;
+    }
+    
+    .how-it-works .text-wrapper {
+        font-size: 32px;
+    }
+    
+    .how-it-works .un-proceso-simple-y {
+        font-size: 16px;
+    }
+    
+    .how-it-works .component-2 {
+        min-height: 300px;
+        padding: 40px 20px 32px 20px;
+    }
+}

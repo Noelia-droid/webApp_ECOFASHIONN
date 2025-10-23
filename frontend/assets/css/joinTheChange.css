@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2521;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sección que ocupa toda la pantalla */
+.join-the-change {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(158deg, #1a6639 0%, #318153 100%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 32px;
+}
+
+.join-the-change .overlay,
+.join-the-change .circle,
+.join-the-change .overlay-2,
+.join-the-change .overlay-3 {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Fija los que causan el desplazamiento */
+.overlay-2,
+.overlay-3 {
+  transform: translate(0, 0);
+}
+
+.overlay {
+    top: 5%;
+    left: 5%;
+    width: 64px;
+    height: 64px;
+    background-color: #ffffff1a;
+}
+
+.circle {
+    right: 5%;
+    bottom: 5%;
+    width: 48px;
+    height: 48px;
+    background-color: #ffffff0d;
+}
+
+.gradient {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(90deg, #1a6639 0%, #318153 50%, #1a6639 100%);
+    opacity: 0.9;
+    z-index: 0;
+}
+
+/* Contenido centrado */
+.content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Ícono principal */
+.icon {
+    width: 64px;
+    height: 64px;
+    color: #f9f8f6;
+}
+
+/* Título */
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f9f8f6;
+}
+
+/* Subtítulo */
+.slogan {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #f9f8f6e6;
+}
+
+/* Botones */
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn.primary {
+    background-color: #f9f8f6;
+    color: #1a6639;
+    box-shadow: 0 20px 40px #1a663933;
+    border: 1px solid;
+}
+
+.btn.secondary {
+    background: transparent;
+    color: #f9f8f6;
+    border: 2px solid #f9f8f64c;
+}
+
+.btn.link {
+    background: none;
+    color: #f9f8f6cc;
+    text-decoration: underline;
+    border: none;
+}
+
+.btn i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .slogan {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

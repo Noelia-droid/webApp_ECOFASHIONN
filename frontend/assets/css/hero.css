@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8f6;
+  color: #2c2521;
+}
+
+/* ===== SECCIÓN PRINCIPAL (HERO) ===== */
+.hero {
+  height: 100vh;
+  background: linear-gradient(to right,
+      rgba(249, 248, 246, 0.95),
+      rgba(249, 248, 246, 0.6)),
+    url("/assets/images/hero.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 80px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== CONTENIDO (TEXTO Y BOTONES) ===== */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 900px;
+  padding: 5rem 7rem;
+  text-align: left;
+}
+
+/* hoja al lado de "Moda Sostenible" */
+.leaf-inline {
+  width: 65px;
+  height: auto;
+  margin-left: 10px;
+  transform: translateY(5px);
+}
+
+/* "Moda Sostenible" */
+.hero-content>h1:first-child {
+  font-size: 2rem;
+  color: #B8947A;
+  margin: 0 1 1rem 0;
+  font-weight: 520;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero .eco-title {
+  font-size: 8rem;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.hero .eco-title span {
+  color: #1a6639;
+}
+
+
+/* ECOFASHION */
+.eco-title {
+  font-size: 10rem;
+  letter-spacing: 4px;
+  font-weight: bold;
+  color: #2c2521;
+  margin-bottom: 0.5rem;
+}
+
+.eco-title span {
+  color: #1a6639;
+}
+
+/* DESCRIPCIÓN */
+.description {
+  font-size: 2rem;
+  color: #7e7167;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* BOTONES */
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 1.4rem;
+}
+
+.primary {
+  background: linear-gradient(164deg, #1a6639, #318153);
+  color: #f9f8f6;
+}
+
+.secondary {
+  background: linear-gradient(159deg, #e2dacf, #b7cd98);
+  color: #2c2521;
+  border: 1px solid #e7e1da;
+}
+
+/* ESTADÍSTICAS */
+.hero-stats {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  font-size: 1.6rem;
+  color: #1a6639;
+  text-align: center;
+}
+
+.hero-stats div strong {
+  font-size: 2.2rem;
+  display: block;
+}
+
+/* CÍRCULOS DECORATIVOS */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.circle.green-small {
+  width: 16px;
+  height: 16px;
+  background-color: #318153;
+  top: 80px;
+  left: 40px;
+}
+
+.circle.beige-medium {
+  width: 24px;
+  height: 24px;
+  background-color: #e2dacf;
+  top: 128px;
+  right: 80px;
+}
+
+.circle.green-tiny {
+  width: 12px;
+  height: 12px;
+  background-color: #1a6639;
+  bottom: 160px;
+  left: 80px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .logo-text {
+    font-size: 1.8rem;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    margin: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero .eco-title {
+    font-size: 4rem;
+  }
+
+  .hero .description {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    height: auto;
+    padding: 6rem 1rem 4rem;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .leaf-inline {
+    width: 45px;
+  }
+
+  .hero .eco-title {
+    font-size: 3.3rem;
+  }
+
+  .hero .description {
+    font-size: 1.2rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

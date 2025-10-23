@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2521;
+}
+
+.membership {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #eaeaea 0%, #f9f8f6 100%);
+}
+
+.membership-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.membership-header h2 {
+  font-size: 48px;
+  color: #2c2521;
+}
+
+.membership-header h2 span {
+  color: #1a6639;
+}
+
+.membership-header p {
+  font-size: 18px;
+  color: #7e7167;
+}
+
+.membership-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 384px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #e7e1da80;
+}
+
+.card.popular {
+  border-color: #1a6639;
+  background: linear-gradient(180deg, #ffffff 0%, #f1ece4 100%);
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #1a6639;
+  color: #fff;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 0 0 0 12px;
+}
+
+.corner-circle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 0 0 0 9999px;
+  background: linear-gradient(145deg, #1a6639, #318153);
+  opacity: 0.15;
+  transform: translate(25%, -25%);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.icon-circle {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background-color: #1a6639;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px #1a66391a;
+}
+
+[data-lucide] {
+  width: 28px;
+  height: 28px;
+  color: #f9f8f6;
+}
+
+.card h3 {
+  font-size: 24px;
+  color: #2c2521;
+}
+
+.card .price {
+  font-size: 20px;
+  color: #1a6639;
+  margin-bottom: 8px;
+}
+
+.card .desc {
+  font-size: 16px;
+  color: #7e7167;
+  margin-bottom: 16px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2c2521;
+  margin-bottom: 8px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #f9f8f6;
+  color: #2c2521;
+  border: 1px solid #e7e1da;
+}
+
+.btn.green {
+  background: linear-gradient(169deg, #1a6639, #318153);
+  color: #fff;
+  box-shadow: 0 4px 20px #1a66391a;
+}
+
+.btn.beige {
+  background: linear-gradient(165deg, #e2dadf, #b7cd98);
+  color: #2c2521;
+  border: 1px solid #e7e1da33;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .membership-header h2 {
+    font-size: 36px;
+  }
+
+  .membership-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
