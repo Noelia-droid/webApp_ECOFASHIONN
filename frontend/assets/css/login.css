@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f8f6;
+    color: #2c2521;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 725px;
+    background: linear-gradient(166deg, #f9f8f6 0%, #f9f8f6 50%, rgba(26, 102, 57, 0.05) 100%);
+    position: relative;
+}
+
+.decorations .circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.gradient {
+    top: 40px;
+    left: 40px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(128deg, #e2dadf 0%, #b7cd98 100%);
+    opacity: 0.2;
+}
+
+.accent {
+    top: 128px;
+    right: 64px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(145deg, #1a6639 0%, #318153 100%);
+    opacity: 0.15;
+}
+
+.overlay {
+    left: 80px;
+    bottom: 80px;
+    width: 96px;
+    height: 96px;
+    background-color: #1a663933;
+}
+
+.gradient-2 {
+    right: 128px;
+    bottom: 128px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(128deg, #e2dadf 0%, #b7cd98 100%);
+    opacity: 0.25;
+}
+
+.login-box {
+    max-width: 448px;
+    width: 100%;
+    background: #fffffff2;
+    border-radius: 12px;
+    box-shadow: 0 8px 10px -6px #0001, 0 20px 25px -5px #0001;
+    backdrop-filter: blur(4px);
+    padding: 24px;
+    z-index: 1;
+}
+
+.branding {
+    text-align: center;
+    margin-bottom: 32px;
+    z-index: 1;
+    width: auto;
+    max-width: none;
+}
+
+.logo-link {
+    display: inline-block;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 12px;
+    max-width: none;
+}
+
+.logo {
+    width: 240px;
+    height: auto;
+    margin-bottom: -5px;
+}
+
+
+.brand-title {
+    color: #1a6639;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.subtitle {
+    color: #7e7167;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.card h2 {
+    text-align: center;
+    color: #2c2521;
+    margin-bottom: 8px;
+}
+
+.card p {
+    text-align: center;
+    color: #7e7167;
+    margin-bottom: 24px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f9f8f6;
+    border: 1px solid #e7e1da;
+    border-radius: 10px;
+    padding-left: 40px;
+    height: 40px;
+}
+
+.input-group .icon,
+.input-group .toggle-icon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 12px;
+}
+
+.input-group .toggle-icon {
+    right: 12px;
+    left: auto;
+}
+
+input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 1rem;
+    color: #7e7167;
+}
+
+.btn {
+    background: linear-gradient(171deg, #1a6639 0%, #318153 100%);
+    color: #f9f8f6;
+    border: none;
+    border-radius: 12px;
+    height: 48px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.links a {
+    color: #266F45;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.signup {
+    display: flex;
+  gap: 6px; 
+}
+
+.signup span,
+.signup a {
+    margin: 0;
+    padding: 0;
+}
+
+.forgot {
+    margin-top: 4px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f9f8f6;
+    border: 1px solid #e7e1da;
+    border-radius: 10px;
+    padding-left: 44px;
+    padding-right: 44px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.input-group input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 1rem;
+    color: #7e7167;
+    outline: none;
+}
+
+/* Íconos Lucide embebidos como SVG */
+.input-group svg.icon,
+.input-group svg.toggle-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    stroke: #7e7167;
+    fill: none;
+}
+
+/* Ícono de la izquierda (email, lock) */
+.input-group svg.icon {
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Ícono de la derecha (eye) */
+.input-group svg.toggle-icon {
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: opacity 0.2s ease;
+}
+
+.input-group svg.toggle-icon:hover {
+    opacity: 0.7;
+}
