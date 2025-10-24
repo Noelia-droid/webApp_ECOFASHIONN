@@ -5,6 +5,7 @@ body {
   color: #2c2521;
 }
 
+/*----------------NAVBAR 1------------------------*/
 .navbar {
     background-color: #FCFCFB;
     backdrop-filter: blur(6px);
@@ -95,4 +96,66 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/*----------------NAVBAR 2------------------------*/
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8f6;
+  color: #2c2521;
+}
+.navbar2 {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar2-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar2-left .navbar2-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.navbar2-links {
+  display: flex;
+  gap: 24px;
+}
+
+.navbar2-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c2521;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar2-link:hover {
+  color: #1a6639;
+}
+
+.navbar2-right .navbar2-profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.navbar2-profile-btn i {
+  width: 24px;
+  height: 24px;
+  stroke: #2c2521;
 }

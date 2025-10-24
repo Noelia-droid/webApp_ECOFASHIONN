@@ -1,0 +1,261 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8f6;
+  color: #2c2521;
+  overflow-x: hidden;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(166deg, #f9f8f6 0%, #f9f8f6 50%, rgba(26, 102, 57, 0.05) 100%);
+  position: relative;
+}
+
+.decorations .circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.gradient {
+  top: 40px;
+  left: 40px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(128deg, #e2dadf 0%, #b7cd98 100%);
+  opacity: 0.2;
+}
+
+.accent {
+  top: 128px;
+  right: 64px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(145deg, #1a6639 0%, #318153 100%);
+  opacity: 0.15;
+}
+
+.overlay {
+  left: 80px;
+  bottom: 80px;
+  width: 96px;
+  height: 96px;
+  background-color: #1a663933;
+}
+
+.gradient-2 {
+  right: 128px;
+  bottom: 128px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(128deg, #e2dadf 0%, #b7cd98 100%);
+  opacity: 0.25;
+}
+
+.register-box {
+  max-width: 448px;
+  width: 100%;
+  background: #fffffff2;
+  border-radius: 12px;
+  box-shadow: 0 8px 10px -6px #0001, 0 20px 25px -5px #0001;
+  backdrop-filter: blur(4px);
+  padding: 24px;
+  z-index: 1;
+}
+
+.branding {
+  text-align: center;
+  margin-bottom: 32px;
+  z-index: 1;
+}
+
+.logo {
+  width: 240px;
+  height: auto;
+  margin-bottom: -5px;
+}
+
+.subtitle {
+  color: #7e7167;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card h2 {
+  text-align: center;
+  color: #2c2521;
+  margin-bottom: 8px;
+}
+
+.card p {
+  text-align: center;
+  color: #7e7167;
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form label span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #2c2521;
+}
+
+/* INPUT GROUP CON ÍCONOS */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f9f8f6;
+  border: 1px solid #e7e1da;
+  border-radius: 10px;
+  padding-left: 44px;
+  padding-right: 44px;
+  height: 48px;
+  overflow: hidden;
+}
+
+.input-group input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0 12px;
+  font-size: 1rem;
+  color: #7e7167;
+  outline: none;
+}
+
+/* ÍCONOS Lucide embebidos */
+.input-group svg.icon,
+.input-group svg.toggle-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  stroke: #7e7167;
+  fill: none;
+}
+
+/* Ícono izquierda (candado) */
+.input-group svg.icon {
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Ícono derecha (ojo) */
+.input-group svg.toggle-icon {
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+}
+
+.input-group svg.toggle-icon:hover {
+  opacity: 0.7;
+}
+
+/* BOTÓN */
+.btn {
+  background: linear-gradient(171deg, #1a6639 0%, #318153 100%);
+  color: #f9f8f6;
+  border: none;
+  border-radius: 12px;
+  height: 48px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* ENLACE A LOGIN */
+.links {
+  display: flex;
+  justify-content: center;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.links a {
+  color: #1a6639;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Dropdown fijo debajo del input */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background-color: #f9f8f6;
+  border: 1px solid #e7e1da;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  font-size: 0.95rem;
+  color: #2c2521;
+  display: none;
+}
+
+/* Título del dropdown */
+.dropdown-title {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1a6639;
+}
+
+/* Lista de requisitos */
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+/* Íconos Lucide */
+.icon-wrapper {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a8a29e;
+  transition: color 0.3s ease;
+}
+
+.dropdown li.valid {
+  color: #1a6639;
+}
+
+.dropdown li.valid .icon-wrapper {
+  color: #1a6639;
+}
+
+/* Posicionamiento relativo para el input-group */
+.input-group {
+  position: relative;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECOFASHION - Crear Cuenta</title>
+    <link rel="stylesheet" href="/assets/css/globals.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/register.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <main class="register">
+        <!-- DECORACIONES -->
+        <div class="decorations">
+            <div class="circle gradient"></div>
+            <div class="circle accent"></div>
+            <div class="circle overlay"></div>
+            <div class="circle gradient-2"></div>
+        </div>
+
+        <!-- LOGO Y SUBTÍTULO -->
+        <div class="branding">
+            <a href="/pages/index.html" class="logo-link">
+                <img src="/assets/images/ECOFASHIONN.png" alt="EcoFashion logo" class="logo" />
+            </a>
+            <p class="subtitle">Únete a la revolución sostenible</p>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="register-box">
+            <div class="card">
+                <h2>Crear Cuenta</h2>
+                <p>Regístrate para comenzar tu viaje sostenible</p>
+
+                <form class="form">
+                    <!-- NOMBRE COMPLETO -->
+                    <label for="fullname">
+                        <span>Nombre completo</span>
+                        <div class="input-group">
+                            <!-- Lucide User icon -->
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <input type="text" id="fullname" placeholder="Tu nombre completo" required />
+                        </div>
+                    </label>
+
+                    <!-- EMAIL -->
+                    <label for="email">
+                        <span>Email</span>
+                        <div class="input-group">
+                            <!-- Lucide Mail icon -->
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+                                <polyline points="22,4 12,13 2,4" />
+                            </svg>
+                            <input type="email" id="email" placeholder="tu@email.com" required />
+                        </div>
+                    </label>
+
+
+                    <!-- CONTRASEÑA -->
+                    <label for="password">
+                        <span>Contraseña</span>
+                        <div class="input-group">
+                            <!-- Lucide Lock icon -->
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            <input type="password" id="password" placeholder="••••••••" required />
+                            <!-- Lucide Eye icon -->
+                            <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                onclick="togglePassword()">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                    </label>
+
+                    <!-- VALIDACIÓN -->
+                    <div id="password-requirements" class="dropdown">
+                        <ul>
+                            <li id="length">
+                                <div class="icon-wrapper">
+                                    <div data-lucide="x"></div>
+                                </div>
+                                Mínimo 8 caracteres
+                            </li>
+                            <li id="uppercase">
+                                <div class="icon-wrapper">
+                                    <div data-lucide="x"></div>
+                                </div>
+                                Al menos una mayúscula
+                            </li>
+                            <li id="lowercase">
+                                <div class="icon-wrapper">
+                                    <div data-lucide="x"></div>
+                                </div>
+                                1 letra minúscula
+                            </li>
+                            <li id="number">
+                                <div class="icon-wrapper">
+                                    <div data-lucide="x"></div>
+                                </div>
+                                1 número
+                            </li>
+                            <li id="special">
+                                <div class="icon-wrapper">
+                                    <div data-lucide="x"></div>
+                                </div>
+                                1 carácter especial (!@#$%^&*)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- BOTÓN -->
+                    <button type="submit" class="btn">Crear Cuenta</button>
+                </form>
+
+                <!-- ENLACE A LOGIN -->
+                <div class="links">
+                    <div class="signup">
+                        <span>¿Ya tienes cuenta?</span><a href="/pages/login.html">Inicia sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/assets/js/register.js"></script>
+    <!--LUCIDE ICONS-->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
