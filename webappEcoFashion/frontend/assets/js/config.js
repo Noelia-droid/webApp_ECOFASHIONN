@@ -79,5 +79,7 @@ window.Auth = {
 // EXPORTAR GLOBALES
 // ===================================================================
 
-window.API_URL = API_URL;
-window.fetchAPI = fetchAPI;
+// frontend/js/config.js
+window.API_URL = window.API_URL || (window.location.hostname === 'localhost'
+  ? 'http://localhost:3001'
+  : window.location.origin);

@@ -31,8 +31,8 @@ const pedidosHistorial = [
     }
 ];
 
-exports.getOrdersByEstado = (req, res) => {
-    const estado = req.query.estado;
+const getOrdersByEstado = async (req, res) => {   
+     const estado = req.query.estado;
     console.log('Estado recibido:', estado); // ✅ útil para depurar
 
     if (!estado || estado === 'todos') {
@@ -50,4 +50,8 @@ exports.getOrdersByEstado = (req, res) => {
     const filtrados = pedidosHistorial.filter(p => p.estado === estadoFiltrar);
 
     res.json(filtrados); // ✅ devuelve los pedidosHistorial filtrados
+};
+
+module.exports = {
+  getOrdersByEstado
 };

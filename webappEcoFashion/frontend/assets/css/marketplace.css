@@ -93,22 +93,7 @@ body {
   margin: 0 auto 40px;
 }
 
-/* Contenedor para búsqueda y botón buscar */
-.grupo-busqueda {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex: 1 1 auto;
-}
-
-/* Contenedor para dropdowns */
-.grupo-filtros {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
+/* Campo de búsqueda */
 .campo-busqueda {
   display: flex;
   align-items: center;
@@ -234,6 +219,7 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
+/* Ubicación */
 .ubicacion {
   display: flex;
   align-items: center;
@@ -257,6 +243,7 @@ body {
   flex-shrink: 0;
 }
 
+/* Botón Buscar */
 #buscarBtn {
   padding: 12px 32px;
   background: linear-gradient(172deg, #1a6639 0%, #318153 100%);

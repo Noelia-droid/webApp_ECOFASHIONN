@@ -51,6 +51,7 @@
 
     <!--PRODUCTOS-->
     <!-- Filtros superiores -->
+    <!-- BARRA DE FILTROS - Reemplazar en tu marketplace.html -->
     <section class="barra-filtros">
         <!-- Campo de búsqueda -->
         <div class="campo-busqueda">
@@ -65,11 +66,7 @@
                 <div data-lucide="chevron-down"></div>
             </div>
             <div class="dropdown-menu" id="categoriaMenu">
-                <div class="dropdown-item selected" data-value="">Todas las categorías</div>
-                <div class="dropdown-item" data-value="Hombre">Hombre</div>
-                <div class="dropdown-item" data-value="Mujer">Mujer</div>
-                <div class="dropdown-item" data-value="Niños">Niños</div>
-                <div class="dropdown-item" data-value="Niñas">Niñas</div>
+                <!-- Se llenará dinámicamente -->
             </div>
         </div>
 
@@ -86,13 +83,39 @@
                 <div class="dropdown-item" data-value="M">M</div>
                 <div class="dropdown-item" data-value="L">L</div>
                 <div class="dropdown-item" data-value="XL">XL</div>
+                <div class="dropdown-item" data-value="XXL">XXL</div>
             </div>
         </div>
 
-        <!-- Cambiar ubicación -->
-        <div class="ubicacion" id="abrirModal">
-            <div data-lucide="map-pin"></div>
-            <span>Cambiar ubicación</span>
+        <!-- Dropdown personalizado de Departamento -->
+        <div class="dropdown-personalizado">
+            <div class="dropdown-toggle" id="departamentoToggle">
+                <span id="departamentoSelected">Todos los departamentos</span>
+                <div data-lucide="chevron-down"></div>
+            </div>
+            <div class="dropdown-menu" id="departamentoMenu">
+                <div class="dropdown-item selected" data-value="">Todos los departamentos</div>
+                <div class="dropdown-item" data-value="Lima">Lima</div>
+                <div class="dropdown-item" data-value="Arequipa">Arequipa</div>
+                <div class="dropdown-item" data-value="Cusco">Cusco</div>
+                <div class="dropdown-item" data-value="La Libertad">La Libertad</div>
+                <div class="dropdown-item" data-value="Piura">Piura</div>
+                <div class="dropdown-item" data-value="Lambayeque">Lambayeque</div>
+                <div class="dropdown-item" data-value="Junín">Junín</div>
+                <div class="dropdown-item" data-value="Ica">Ica</div>
+                <div class="dropdown-item" data-value="Áncash">Áncash</div>
+                <div class="dropdown-item" data-value="Cajamarca">Cajamarca</div>
+                <div class="dropdown-item" data-value="Puno">Puno</div>
+                <div class="dropdown-item" data-value="Huánuco">Huánuco</div>
+                <div class="dropdown-item" data-value="Ayacucho">Ayacucho</div>
+                <div class="dropdown-item" data-value="San Martín">San Martín</div>
+                <div class="dropdown-item" data-value="Ucayali">Ucayali</div>
+                <div class="dropdown-item" data-value="Loreto">Loreto</div>
+                <div class="dropdown-item" data-value="Tacna">Tacna</div>
+                <div class="dropdown-item" data-value="Moquegua">Moquegua</div>
+                <div class="dropdown-item" data-value="Tumbes">Tumbes</div>
+                <div class="dropdown-item" data-value="Amazonas">Amazonas</div>
+            </div>
         </div>
 
         <!-- Botón Buscar -->
@@ -100,15 +123,26 @@
     </section>
 
     <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
-    <section class="productos-grid" id="productosContainer">
-        <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
+    <div id="productos-container" class="grid-productos"></div>
+    <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
     </section>
-    
+
+    <script src="/assets/js/axios.min.js"></script>
+
+    <script>
+        const API_URL = 'http://localhost:3001'; 
+    </script>
+
     <!-- Librería de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Tu JavaScript -->
-    <script src="/assets/js/marketplace.js"></script>
+    <!-- Axios y configuración -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <<!-- Librerías y configuración -->
+        <script src="/socket.io/socket.io.js"></script> <!--CLIENTE LOCAL-->
+        <!-- Configuración global -->
+        <script src="/assets/js/config.js"></script>
+        <!-- Scripts que usan socket -->
+        <script src="/assets/js/marketplace.js"></script>
 </body>
 
 </html>

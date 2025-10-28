@@ -22,23 +22,23 @@ const helmetConfigDev = helmet({
         directives: {
             defaultSrc: ["'self'"],
             scriptSrc: [
-                "'self'", 
+                "'self'",
                 "'unsafe-inline'",                          // Permite scripts inline (necesario en desarrollo)
                 "https://accounts.google.com",              // Google OAuth
                 "https://cdnjs.cloudflare.com",              // CDNs permitidas
                 "https://unpkg.com",
                 "https://cdn.jsdelivr.net", // AXIOUS permitido
                 "https://cdn.socket.io"// socket.io permitido
-            ], 
+            ],
             styleSrc: [
-                "'self'", 
+                "'self'",
                 "'unsafe-inline'",                          // Permite estilos inline
                 "https://fonts.googleapis.com",
                 "https://cdnjs.cloudflare.com"
             ],
             imgSrc: [
-                "'self'", 
-                "data:", 
+                "'self'",
+                "data:",
                 "https:",                                   // Permite imágenes de cualquier HTTPS
                 "https://*.googleusercontent.com"           // Fotos de perfil de Google
             ],
@@ -91,12 +91,17 @@ const helmetConfigProd = helmet({
             defaultSrc: ["'self'"],
             scriptSrc: [
                 "'self'",
+                "'unsafe-inline'",
                 "https://accounts.google.com",
-                "https://cdnjs.cloudflare.com"
+                "https://cdnjs.cloudflare.com",
+                "https://unpkg.com",
+                "https://cdn.jsdelivr.net",
+                "https://cdn.socket.io"
             ],
             styleSrc: [
                 "'self'",
-                "'unsafe-inline'",                          // Considera eliminar en producción
+                "'unsafe-inline'", 
+                "https://unpkg.com",                         // Considera eliminar en producción
                 "https://fonts.googleapis.com"
             ],
             imgSrc: [
@@ -126,14 +131,14 @@ const helmetConfigProd = helmet({
     referrerPolicy: {
         policy: 'strict-origin-when-cross-origin'
     },
-    
+
     // HSTS - Forzar HTTPS (ACTIVADO en producción)
     hsts: {
         maxAge: 31536000,                                   // 1 año
         includeSubDomains: true,
         preload: true
     },
-    
+
     hidePoweredBy: true
 });
 
@@ -152,19 +157,19 @@ module.exports = isProduction ? helmetConfigProd : helmetConfigDev;
 function additionalSecurityHeaders(req, res, next) {
     // Prevenir que la página sea cargada en iframes de otros dominios
     res.setHeader('X-Frame-Options', 'DENY');
-    
+
     // Prevenir MIME sniffing
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    
+
     // Habilitar filtro XSS del navegador
     res.setHeader('X-XSS-Protection', '1; mode=block');
-    
+
     // Controlar referrer
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    
+
     // Permissions Policy (antes Feature Policy)
     res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-    
+
     next();
 }
 
