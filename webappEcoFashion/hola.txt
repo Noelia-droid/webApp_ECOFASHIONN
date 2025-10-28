@@ -1,0 +1,157 @@
+webAppEcoFashion/
+│
+├── 📁 backend/                    ← EL CEREBRO (Servidor)
+│   ├── 📁 config/
+│   │   ├── database.js
+│   │   ├── rbac.js
+│   │   |── passport.js            ← Configuración de Google OAuth
+│   │   ├── security.js          ← ⭐ NUEVO: Config de Helmet
+│   │   └── hashids.js           ← ⭐ NUEVO: Config de Hashids
+│   │
+│   ├── 📁 controllers/
+│   │   ├── authController.js    ← Usa Argon2 aquí
+│   │   ├── productController.js
+│   │   └── orderController.js
+|   |
+│   ├── 📁 middleware/             ← Guardias de seguridad
+│   │   └── auth.js                ← Verifica si usuario tiene permiso
+│   │
+│   ├── 📁 models/
+│   │   ├── user.js              ← Argon2 para passwords
+│   │   ├── product.js
+│   │   ├── rol.js
+│   │   └── order.js
+│   │
+│   ├── 📁 routes/
+│   │   ├── auth.js    
+│   │   ├── orders.js
+│   │   ├── products.js
+│   │   └── users.js
+│   │
+│   ├── 📁 utils/
+│   │   ├── argon2.js    ← Usar Argon2 aquí
+│   │   ├── hashids.js
+│   │   └── jwt.js
+│   │
+│   └── server.js                  ← ARCHIVO PRINCIPAL del servidor
+│
+├── 📁 frontend/                   ← LA CARA (Lo que ve el usuario)
+│   ├── 📁 pages/                  ← Páginas HTML
+│   │   ├── index.html             ← Página de inicio
+│   │   ├── login.html             ← Formulario de login
+│   │   ├── register.html          ← Formulario de registro
+│   │   └── dashboard_USER.html    ← Panel del usuario
+│   │
+│   ├── 📁 js/                     ← Scripts JavaScript
+│   │   └── config.js              ← Conexión con el backend
+│   │
+│   ├── 📁 css/                    ← Estilos
+│   │   ├── styles.css
+│   │   ├── login.css
+│   │   └── register.css
+│   │
+│   └── 📁 images/                 ← Imágenes, logos
+│
+├── 📁 node_modules/                ← Herramientas prestadas
+├── 📄 .env                        ← Variables secretas (NUNCA subir a Git)
+├── 📄 .gitignore                  ← Qué archivos NO subir a GitHub
+├── 📄 package.json                ← Lista de dependencias del proyecto
+└── 📄 README.md                   ← Documentación del proyecto
+
+## 🔑 5. CONCEPTOS CLAVE
+
+##LIBRERÍAS
+---------------------------------------------------------------------------------------------------------------------
+- Argon2: Esta la utilizaremos para hashing de contraseñas con salt automático integrado que hace que las contraseñas no se almacenen en texto plano en el login. Se aplicará en el login-backend. Se puede entender como una librería de node.js que proporciona algoritmo, ya que esta se implementa de forma de biblioteca.
+ 
+
+- Helmet: Es una librería de node.js que ayudará a proteger la web app configurando varios encabezados/headers HTTP para la seguridad de toda la página. Se implementará en el backend.
+ 
+
+- Hashids: Se implementará en el backend (en términos de node.js). Esta se utilizará para encriptar URL e IPs. EJEMPLO:
+---------------------------------------------------------------------------------------------------------------------
+
+### **¿Qué es una SESIÓN?**
+```
+┌─────────────────────────────────────┐
+│  Cuando haces login, el servidor    │
+│  guarda tus datos en una "sesión"   │
+│  que dura 24 horas.                 │
+│                                     │      
+└─────────────────────────────────────┘
+```
+
+### **¿Qué es OAUTH?**
+```
+┌─────────────────────────────────────┐
+│  En vez de crear otra contraseña,   │
+│  Google verifica tu identidad y     │
+│  le dice a tu app: "Sí, es ella"    │
+│                                     │
+│  Tu app NUNCA ve tu contraseña      │
+│  de Google.                         │
+└─────────────────────────────────────┘
+```
+
+### **¿Qué es una API?**
+```
+┌─────────────────────────────────────┐
+│  API = Forma de comunicación        │
+│                                     │
+│  Frontend dice: "Dame datos usuario"│
+│  Backend responde: {name: "María"}  │
+│                                     │
+│  Como pedir comida en un restaurant │
+└─────────────────────────────────────┘
+
+## 🎬 FLUJO VISUAL COMPLETO CON MIDDLEWARE
+```
+USUARIO intenta acceder a /admin/panel
+   │
+   ▼
+1. Request llega a server.js
+   │
+   ├─> app.get('/admin/panel', isAdmin, handler)
+   │                            ↑
+   │                            GUARDIA
+   ▼
+2. MIDDLEWARE isAdmin() se ejecuta PRIMERO
+   │
+   ├─> ¿req.isAuthenticated()? 
+   │   │
+   │   ├─ NO → ❌ Error 403 "Acceso denegado"
+   │   │
+   │   └─ SÍ → Continúa ↓
+   │
+   ├─> ¿req.user.role === 'admin'?
+   │   │
+   │   ├─ NO → ❌ Error 403 "Acceso denegado"
+   │   │
+   │   └─ SÍ → ✅ Continúa ↓
+   │
+   ▼
+3. next() → Ejecutar handler (mostrar panel)
+   │
+   ▼
+4. Respuesta enviada al usuario
+
+## 🛡️ NIVELES DE SEGURIDAD IMPLEMENTADOS
+```
+NIVEL 1: Helmet
+├─ Previene XSS
+├─ Previene Clickjacking
+└─ Oculta info del servidor
+
+NIVEL 2: Rate Limiting
+├─ Max 5 intentos login / 15 min
+└─ Max 3 registros / hora
+
+NIVEL 3: Argon2
+├─ Passwords nunca en texto plano
+├─ Salt automático único
+└─ Resistente a ataques GPU
+
+NIVEL 4: Hashids
+├─ IDs no secuenciales
+├─ URLs no predecibles
+└─ Previene enumeración

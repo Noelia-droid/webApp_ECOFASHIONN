@@ -1,23 +1,25 @@
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f9f8f6;
-    color: #2c2521;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8f6;
+  color: #2c2521;
 }
 
 .membership {
-  padding: 80px 20px;
+  padding: 120px 20px;
   background: linear-gradient(180deg, #eaeaea 0%, #f9f8f6 100%);
 }
 
 .membership-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 10%;
 }
 
 .membership-header h2 {
-  font-size: 48px;
+  font-size: 52px;
+  font-weight: 700;
   color: #2c2521;
+  margin-bottom: 12px;
 }
 
 .membership-header h2 span {
@@ -25,8 +27,10 @@ body {
 }
 
 .membership-header p {
-  font-size: 18px;
+  font-size: 20px;
   color: #7e7167;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .membership-cards {
@@ -34,33 +38,42 @@ body {
   gap: 32px;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .card {
   position: relative;
   width: 100%;
-  max-width: 384px;
+  max-width: 400%;
   background-color: #fff;
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  border: 1px solid #e7e1da80;
+  border-radius: 20px;
+  padding: 49px 36px;
+  box-shadow:0 12px 32px rgba(0,0,0,0.08);
+  border: 1px solid #e7e1da;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  
 }
 
 .card.popular {
-  border-color: #1a6639;
+  border: 2px solid #1a6639;
   background: linear-gradient(180deg, #ffffff 0%, #f1ece4 100%);
 }
 
 .badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: -12px;
+  right: 24px;
   background-color: #1a6639;
   color: #fff;
-  font-size: 14px;
-  padding: 4px 12px;
-  border-radius: 0 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(26, 102, 57, 0.3);
 }
 
 .corner-circle {
@@ -77,13 +90,13 @@ body {
 
 .card-header {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
 }
 
 .icon-circle {
   width: 64px;
   height: 64px;
-  margin: 0 auto 12px;
+  margin: 0 auto 20px;
   border-radius: 50%;
   background-color: #1a6639;
   display: flex;
@@ -99,40 +112,53 @@ body {
 }
 
 .card h3 {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 600;
   color: #2c2521;
+  margin-bottom: 8px;
 }
 
 .card .price {
   font-size: 20px;
   color: #1a6639;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .card .desc {
-  font-size: 16px;
+  font-size: 15px;
   color: #7e7167;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
+  line-height: 1.5;
 }
 
 .features {
   list-style: none;
   padding: 0;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .features li {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
   color: #2c2521;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.features li [data-lucide] {
+  width: 20px;
+  height: 20px;
+  color: #1a6639;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .btn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 16px;
@@ -141,6 +167,11 @@ body {
   background-color: #f9f8f6;
   color: #2c2521;
   border: 1px solid #e7e1da;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #eaeaea;
 }
 
 .btn.green {
@@ -149,16 +180,84 @@ body {
   box-shadow: 0 4px 20px #1a66391a;
 }
 
+.btn.green:hover {
+  background: linear-gradient(169deg, #14532d, #276f45);
+}
+
 .btn.beige {
   background: linear-gradient(165deg, #e2dadf, #b7cd98);
   color: #2c2521;
   border: 1px solid #e7e1da33;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+.btn.beige:hover {
+  background: linear-gradient(165deg, #d6d0d4, #a9bb8a);
+}
+
+/*-----------------DISEÑO RESPONSIVO----------------*/
+/*Pantallas grandes*/
+@media (min-width: 1025px) {
+  .membership-header h2 {
+    font-size: 48px;
+  }
+
+  .membership-header p {
+    font-size: 18px;
+  }
+
+  .card {
+    padding: 32px;
+  }
+
+  .features li {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+}
+
+/*Pantallas medianas*/
+@media (max-width: 1024px) {
+  .membership-header h2 {
+    font-size: 42px;
+  }
+
+  .membership-header p {
+    font-size: 17px;
+  }
+
+  .membership-cards {
+    gap: 24px;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 28px;
+  }
+
+  .features li {
+    font-size: 13.5px;
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+}
+
+/*Pantallas pequeñas*/
+@media (max-width: 767px) {
+  .membership {
+    padding: 60px 16px;
+  }
+
   .membership-header h2 {
     font-size: 36px;
+  }
+
+  .membership-header p {
+    font-size: 16px;
   }
 
   .membership-cards {
@@ -167,6 +266,51 @@ body {
   }
 
   .card {
-    max-width: 100%;
+    padding: 24px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+  }
+
+  .card .price {
+    font-size: 18px;
+  }
+
+  .card .desc {
+    font-size: 15px;
+  }
+
+  .features li {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/*Pantallas pequeñas*/
+@media (max-width: 479px) {
+  .membership-header h2 {
+    font-size: 28px;
+  }
+
+  .membership-header p {
+    font-size: 15px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .features li {
+    font-size: 12.5px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px;
   }
 }

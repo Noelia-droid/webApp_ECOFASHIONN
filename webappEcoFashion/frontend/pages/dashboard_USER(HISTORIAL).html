@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/assets/css/sidebar_USER.css" />
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard_USER(HISTORIAL).css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-----------------AXIOS-------------------------->
+    <script src="/assets/js/axios.min.js"></script>
+    <script src="/assets/js/axios.config.js"></script>
+</head>
+
+<body>
+    <!-- Incluir el sidebar desde sidebar_USER.html -->
+    <div id="sidebar-container"></div>
+    <!-- Incluir el HEADER desde header.html -->
+    <div id="header-container"></div>
+
+
+    <!-- SECCIÓN HISTORIAL DE COMPRAS -->
+    <div class="historycontainer">
+        <main class="main">
+
+            <section class="history-header">
+                <div class="history-title">
+                    <div class="icon-clock">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 6v6l4 2M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="#333" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h2>Historial de compras</h2>
+                </div>
+            </section>
+
+            <div class="history-tabs">
+                <div class="tabs-wrapper">
+                    <div class="tabs">
+                        <button data-tab="todos">Todos</button>
+                        <button data-tab="entregados">Entregados</button>
+                        <button data-tab="enviados">Enviados</button>
+                        <button data-tab="procesando">Procesando</button>
+                        <button data-tab="cancelados">Cancelados</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="history-content">
+                <div class="orders-container" id="pedidos-container"></div>
+                <!--Se cargarán automáticamente-->
+            </section>
+
+        </main>
+    </div>
+
+    <!--------------Scripts---------------------->
+    <!--SIDEBAR-->
+    <script>
+        // Cargar el sidebar y luego inicializar su funcionalidad
+        fetch('/pages/sidebar_USER.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-container').innerHTML = data;
+
+                // Cargar el script del sidebar DESPUÉS de que el HTML esté cargado
+                const script = document.createElement('script');
+                script.src = '/assets/js/sidebar_USER.js';
+                document.body.appendChild(script);
+            })
+            .catch(error => console.error('Error cargando sidebar:', error));
+    </script>
+
+    <!--HEADER-->
+    <script>
+        fetch('/pages/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                lucide.createIcons(); // vuelve a aplicar iconos en el header cargado
+            })
+            .catch(error => console.error('Error cargando header:', error));
+    </script>
+
+    <!--LUCIDE ICONS-->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script src="/assets/js/dashboard_USER(HISTORIAL).js"></script>
+</body>
+
+</html>

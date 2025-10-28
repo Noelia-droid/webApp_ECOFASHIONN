@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ECOFASHION - Iniciar Sesión</title>
-    <link rel="stylesheet" href="/assets/css/globals.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/navbar_MARKETPLACE.css" />
     <link rel="stylesheet" href="/assets/css/marketplace.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
@@ -33,7 +32,6 @@
         </div>
     </header>
 
-
     <!-- HERO -->
     <section class="hero-section">
         <div class="hero-background">
@@ -49,7 +47,68 @@
                 </div>
             </div>
         </div>
+    </section>
 
+    <!--PRODUCTOS-->
+    <!-- Filtros superiores -->
+    <section class="barra-filtros">
+        <!-- Campo de búsqueda -->
+        <div class="campo-busqueda">
+            <div data-lucide="search"></div>
+            <input type="text" id="busqueda" placeholder="Buscar prendas..." />
+        </div>
+
+        <!-- Dropdown personalizado de Categoría -->
+        <div class="dropdown-personalizado">
+            <div class="dropdown-toggle" id="categoriaToggle">
+                <span id="categoriaSelected">Todas las categorías</span>
+                <div data-lucide="chevron-down"></div>
+            </div>
+            <div class="dropdown-menu" id="categoriaMenu">
+                <div class="dropdown-item selected" data-value="">Todas las categorías</div>
+                <div class="dropdown-item" data-value="Hombre">Hombre</div>
+                <div class="dropdown-item" data-value="Mujer">Mujer</div>
+                <div class="dropdown-item" data-value="Niños">Niños</div>
+                <div class="dropdown-item" data-value="Niñas">Niñas</div>
+            </div>
+        </div>
+
+        <!-- Dropdown personalizado de Talla -->
+        <div class="dropdown-personalizado">
+            <div class="dropdown-toggle" id="tallaToggle">
+                <span id="tallaSelected">Todas las tallas</span>
+                <div data-lucide="chevron-down"></div>
+            </div>
+            <div class="dropdown-menu" id="tallaMenu">
+                <div class="dropdown-item selected" data-value="">Todas las tallas</div>
+                <div class="dropdown-item" data-value="XS">XS</div>
+                <div class="dropdown-item" data-value="S">S</div>
+                <div class="dropdown-item" data-value="M">M</div>
+                <div class="dropdown-item" data-value="L">L</div>
+                <div class="dropdown-item" data-value="XL">XL</div>
+            </div>
+        </div>
+
+        <!-- Cambiar ubicación -->
+        <div class="ubicacion" id="abrirModal">
+            <div data-lucide="map-pin"></div>
+            <span>Cambiar ubicación</span>
+        </div>
+
+        <!-- Botón Buscar -->
+        <button id="buscarBtn">Buscar</button>
+    </section>
+
+    <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
+    <section class="productos-grid" id="productosContainer">
+        <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
+    </section>
+    
+    <!-- Librería de Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tu JavaScript -->
+    <script src="/assets/js/marketplace.js"></script>
 </body>
 
 </html>

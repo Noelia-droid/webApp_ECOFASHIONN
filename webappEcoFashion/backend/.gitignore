@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vscode/
+.hola.txt
+.env
+.env.local
+.env.production
+*.log

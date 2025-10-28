@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ECOFASHION - Inicio</title>
-  <link rel="stylesheet" href="/assets/css/globals.css" />
   <link rel="stylesheet" href="/assets/css/hero.css" />
   <link rel="stylesheet" href="/assets/css/navbar.css" />
   <link rel="stylesheet" href="/assets/css/hif.css" />
@@ -17,23 +16,7 @@
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <section class="navbar">
-    <div class="navbar-container">
-      <div class="logo-container">
-        <img src="/assets/images/logo.png" alt="EcoFashion Logo" class="logo-img">
-      </div>
-      <nav class="nav-links">
-        <a href="/pages/marketplace.html">Explorar</a>
-        <a href="#como-funciona">Cómo Funciona</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#membership">Membresía</a>
-      </nav>
-      <div class="nav-actions">
-        <a href="/pages/login.html" class="btn outline">Vender Ropa</a>
-      </div>
-    </div>
-  </section>
+  <div id="navbar-placeholder"></div>
 
   <!-- HERO -->
   <header class="hero">
@@ -185,7 +168,8 @@
       </div>
     </div>
   </section>
-  <!--Membership-->
+
+  <!-- Membership -->
   <section class="membership">
     <div class="membership-header">
       <h2>Planes de <span>Membresía</span></h2>
@@ -201,23 +185,20 @@
           </div>
           <h3>Básico</h3>
           <p class="price">Gratis</p>
-          <p class="desc">Perfecto para empezar en la moda sostenible</p>
+          <p class="desc">Ideal para comenzar tu camino sostenible</p>
         </div>
         <ul class="features">
           <li>
             <div data-lucide="upload"></div> Subir hasta 5 prendas al mes
           </li>
           <li>
-            <div data-lucide="percent"></div> Comisión del 8% por venta
+            <div data-lucide="eye"></div> Ver prendas de otros vendedores
           </li>
           <li>
-            <div data-lucide="store"></div> Acceso al marketplace completo
+            <div data-lucide="bar-chart-3"></div> Acceso a estadísticas básicas
           </li>
           <li>
-            <div data-lucide="mail"></div> Soporte por email
-          </li>
-          <li>
-            <div data-lucide="book-open"></div> Guías básicas de sostenibilidad
+            <div data-lucide="megaphone"></div> Publicar en el canal de sostenibilidad
           </li>
         </ul>
         <button class="btn">Comenzar Ahora</button>
@@ -231,33 +212,21 @@
             <div data-lucide="star"></div>
           </div>
           <h3>Premium</h3>
-          <p class="price">S/20.00</p>
-          <p class="desc">Para vendedores serios y compradores frecuentes</p>
+          <p class="price">S/9.99/mes</p>
+          <p class="desc">Pensado para tiendas y compradores frecuentes</p>
         </div>
         <ul class="features">
           <li>
-            <div data-lucide="infinity"></div> Prendas ilimitadas
+            <div data-lucide="store"></div> Ver prendas de vendedores y compradores
           </li>
           <li>
-            <div data-lucide="percent"></div> Comisión reducida del 5%
-          </li>
-          <li>
-            <div data-lucide="megaphone"></div> Promoción destacada
-          </li>
-          <li>
-            <div data-lucide="bar-chart-3"></div> Análisis de ventas
-          </li>
-          <li>
-            <div data-lucide="headphones"></div> Soporte prioritario
+            <div data-lucide="bar-chart-3"></div> Acceso a estadísticas avanzadas
           </li>
           <li>
             <div data-lucide="calendar-heart"></div> Eventos exclusivos
           </li>
           <li>
-            <div data-lucide="certificate"></div> Certificado Eco
-          </li>
-          <li>
-            <div data-lucide="tag"></div> Descuentos en compras
+            <div data-lucide="megaphone"></div> Publicar en el canal de sostenibilidad
           </li>
         </ul>
         <button class="btn green">Comenzar Ahora</button>
@@ -271,32 +240,23 @@
           </div>
           <h3>Empresas</h3>
           <p class="price">Personalizado</p>
-          <p class="desc">Para tiendas y marcas sostenibles</p>
+          <p class="desc">Para marcas comprometidas con el impacto ambiental</p>
         </div>
         <ul class="features">
           <li>
             <div data-lucide="store"></div> Tienda corporativa personalizada
           </li>
           <li>
-            <div data-lucide="percent"></div> Comisión del 3% por venta
+            <div data-lucide="bar-chart-3"></div> Acceso a estadísticas avanzadas
           </li>
           <li>
-            <div data-lucide="code"></div> API para integración
+            <div data-lucide="certificate"></div> Certificación con sello ECO
           </li>
           <li>
-            <div data-lucide="user-check"></div> Manager dedicado
+            <div data-lucide="megaphone"></div> Publicar en el canal de sostenibilidad
           </li>
           <li>
-            <div data-lucide="certificate"></div> Certificación oficial eco
-          </li>
-          <li>
-            <div data-lucide="handshake"></div> Colaboraciones con ONGs
-          </li>
-          <li>
-            <div data-lucide="leaf"></div> Reportes de impacto ambiental
-          </li>
-          <li>
-            <div data-lucide="megaphone"></div> Marketing conjunto
+            <div data-lucide="leaf"></div> Métricas de impacto ambiental
           </li>
         </ul>
         <button class="btn beige">Contactar Ventas</button>
@@ -341,6 +301,7 @@
       </div>
     </div>
   </section>
+
   <!--FOOTER-->
   <footer class="footer">
     <div class="footer-brand">
@@ -394,9 +355,13 @@
     lucide.createIcons();
   </script>
 
+  <script>
+    fetch('/pages/navbar_HOME.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-placeholder').innerHTML = html;
+      });
+  </script>
 </body>
-
-
-
 
 </html>
