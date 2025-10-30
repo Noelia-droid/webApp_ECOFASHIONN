@@ -1,15 +1,14 @@
-// frontend/js/config.js
-
+//config.js sirve para centralizar la configuración globald e proyecto, especialmente para entornos 
+//locales vs para producción.
+//1. DENIFE LA API_URL dinámicamente: Esto permite que tu frontend sepa a qué backend conectarse, dependiendo de si estás en desarrollo (localhost) o en producción (dominio real). Así no se tiene que cambiar manualmente URLs en cada archivo.
+//2. CENTRALIZA FUNCIONES DE RED (fetchAPI): Esta función permite hacer peticiones fetch con configuración estándar sin repetir códifo en ese módulo
+//3. DEFINE FUNCIONES DE AUTENTICACIÓN: Esto da un toque global Auth para poder usar en cualquier parte del frontend para poder manejar el registro, login y logout de forma consistente
 // ===================================================================
 // CONFIGURACIÓN DE API
 // ===================================================================
 
 const isLocalhost = window.location.hostname === 'localhost' || 
                     window.location.hostname === '127.0.0.1';
-
-const API_URL = isLocalhost 
-    ? 'http://localhost:3001'
-    : window.location.origin;
 
 // ===================================================================
 // UTILIDADES DE FETCH

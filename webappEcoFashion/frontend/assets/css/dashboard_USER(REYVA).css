@@ -1,0 +1,103 @@
+/*--------------- GLOBAL ---------------*/
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8f6;
+}
+
+main {
+  padding: 32px 160px;
+}
+
+/*--------------RESEÑAS Y VALORACIONES----------------*/
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  margin-left: 98px;
+  margin-right: 0;
+  align-items: center;
+  padding: 50px 40px 24px;
+  transition: margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed .reviews-container {
+  margin-left: 30px;
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviews-header h2 {
+  font-size: 25px;
+  font-weight: 700;
+  color: #2c2521;
+  margin: 0;
+}
+
+.reviews-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-star svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*--------------------TABS---------------------*/
+.reviews-tabs {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 32px;
+}
+.tabs-wrapper {
+  background-color: #ECE7DF;
+  border-radius: 13px;
+  padding: 7px;
+  border: 1px solid #e7e1da;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+}
+.review-data-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  font-weight: 500;
+  color: #2c2521;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background-color: #f9f8f6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/*----------CARDS--------------*/
+.reviews-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ratings-container {
+  background-color: #fff;
+  border: 1px solid #e7e1da;
+  border-radius: 12px;
+  padding: 24px;
+  min-height: 200px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}

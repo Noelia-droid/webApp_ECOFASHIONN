@@ -16,7 +16,6 @@ python -m venv venv
 PS C:\Users\USUARIO\OneDrive\Documentos\clinicMind> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 PS C:\Users\USUARIO\OneDrive\Documentos\clinicMind> .\venv\Scripts\Activate
 
-
 RESUMIDO: 
 
 python -m venv venv

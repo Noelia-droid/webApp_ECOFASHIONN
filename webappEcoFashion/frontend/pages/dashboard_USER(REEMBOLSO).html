@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/assets/css/sidebar_USER.css" />
     <link rel="stylesheet" href="/assets/css/header.css" />
-    <link rel="stylesheet" href="/assets/css/dashboard_USER(HISTORIAL).css" />
+    <link rel="stylesheet" href="/assets/css/dashboard_USER(REEMBOLSO).css" />
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-----------------AXIOS-------------------------->
     <script src="/assets/js/axios.min.js"></script>
@@ -20,40 +20,39 @@
     <div id="header-container"></div>
 
 
-    <!-- SECCIÓN HISTORIAL DE COMPRAS -->
-    <div class="historycontainer">
+    <!-- SECCIÓN REEMBOLSOS -->
+    <div class="refund-container">
         <main class="main">
 
-            <div class="history-header">
-                <div class="history-title">
+            <div class="refund-header">
+                <div class="refund-title">
                     <div class="icon-clock">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M12 6v6l4 2M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="#333" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h2>Historial de compras</h2>
-                    
+                    <h2>Reembolsos</h2>
+                </div>
             </div>
 
-            <div class="history-tabs">
+            <div class="refund-tabs">
                 <div class="tabs-wrapper">
                     <div class="tabs">
                         <button data-tab="todos">Todos</button>
-                        <button data-tab="entregados">Entregados</button>
-                        <button data-tab="enviados">Enviados</button>
+                        <button data-tab="pendientes">Pendientes</button>
                         <button data-tab="procesando">Procesando</button>
-                        <button data-tab="cancelados">Cancelados</button>
+                        <button data-tab="aprobados">Aprobados</button>
+                        <button data-tab="completados">Completados</button>
+                        <button data-tab="rechazados">Rechazados</button>
                     </div>
                 </div>
             </div>
 
-
-            <div class="history-content">
-                <div class="orders-container" id="pedidos-container"></div>
+            <div class="refund-content">
+                <div class="orders-container" id="reembolso-container"></div>
                 <!--Se cargarán automáticamente-->
             </div>
-
         </main>
     </div>
 
@@ -91,7 +90,7 @@
         lucide.createIcons();
     </script>
 
-    <script src="/assets/js/dashboard_USER(HISTORIAL).js"></script>
+    <script src="/assets/js/dashboard_USER(REEMBOLSO).js"></script>
 </body>
 
 </html>

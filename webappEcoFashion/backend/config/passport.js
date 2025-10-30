@@ -13,7 +13,7 @@ console.log('🔧 OAuth Callback URL:', callbackURL);
 console.log('🔧 Entorno:', process.env.NODE_ENV || 'development');
 
 // ===================================================================
-// 🔐 Estrategia de Google OAuth 2.0
+// Estrategia de Google OAuth 2.0
 // ===================================================================
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -52,20 +52,20 @@ passport.use(new GoogleStrategy({
             picture: profile.photos[0]?.value
         });
 
-        console.log('✅ Nuevo usuario creado desde Google:', user.email);
+        console.log('Nuevo usuario creado desde Google:', user.email);
         return done(null, user);
 
     } catch (error) {
-        console.error('❌ Error en autenticación de Google:', error);
+        console.error('Error en autenticación de Google:', error);
         return done(error, null);
     }
 }));
 
 // ===================================================================
-// 🍪 Serialización de sesión
+// Serialización de sesión
 // ===================================================================
 passport.serializeUser((user, done) => {
-    console.log('💾 Serializando usuario:', user.id);
+    console.log('Serializando usuario:', user.id);
     done(null, user.id);
 });
 
@@ -73,13 +73,13 @@ passport.deserializeUser(async (id, done) => {
     try {
         const user = await User.findById(id);
         if (!user) {
-            console.log('⚠️ Usuario no encontrado en deserialización:', id);
+            console.log('Usuario no encontrado en deserialización:', id);
             return done(null, false);
         }
-        console.log('📂 Usuario deserializado:', user.email);
+        console.log('Usuario deserializado:', user.email);
         done(null, user);
     } catch (error) {
-        console.error('❌ Error deserializando usuario:', error);
+        console.error('Error deserializando usuario:', error);
         done(error, null);
     }
 });

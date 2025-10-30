@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reseñas y Valoraciones</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/assets/css/sidebar_USER.css" />
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard_USER(REYVA).css" />
+
+    <!-- Iconos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Contenedor principal -->
+    <div class="reviews-container">
+        <main class="main">
+            <!-- Encabezado -->
+            <div class="reviews-header">
+                <div class="reviews-title">
+                    <div class="icon-star">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h2>Reseñas y valoraciones</h2>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="reviews-tabs-section">
+                <div class="tabs-wrapper">
+                    <div class="tabs">
+                        <button data-tab="todas">Todas</button>
+                        <button data-tab="pendientes">Pendientes</button>
+                        <button data-tab="completadas">Completadas</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rating-content">
+                <div class="orders-container" id="resena-container"></div>
+                <!--Se cargarán automáticamente-->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Cargar sidebar
+        fetch('/pages/sidebar_USER.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('sidebar-container').innerHTML = data;
+                const script = document.createElement('script');
+                script.src = '/assets/js/sidebar_USER.js';
+                document.body.appendChild(script);
+            });
+
+        // Cargar header
+        fetch('/pages/header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                lucide.createIcons();
+            });
+    </script>
+
+    <!-- Iconos -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <!-- Axios -->
+    <script src="/assets/js/axios.min.js"></script>
+    <script src="/assets/js/axios.config.js"></script>
+    <!-- JS de reseñas -->
+    <script src="/assets/js/dashboard_USER(REYVA).js"></script>
+</body>
+
+</html>

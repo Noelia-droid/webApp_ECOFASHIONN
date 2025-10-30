@@ -1,139 +1,112 @@
-// ========================================
 // MARKETPLACE.JS - ECOFASHION
-// ========================================
 
-// ========================================
-// 🔧 Variables globales
-// ========================================
+// Almacena todos los productos obtenidos desde la API
 let todosLosProductos = [];
+
+// Almacena los productos que cumplen con los filtros activos
 let productosFiltrados = [];
 
-let filtrosActivos = {
+// Estado actual de los filtros aplicados por el usuario
+const filtrosActivos = {
   busqueda: '',
   categoria: '',
   talla: '',
   departamento: ''
 };
 
-// ========================================
-// 🚀 Inicialización principal
-// ========================================
+// Ejecuta funciones clave al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-  cargarCategorias();
-  cargarTallas();
-  cargarDepartamentos();
-  cargarProductos();
-  inicializarBusqueda();
-  inicializarDropdowns(); // ✅ llamada agregada
+  cargarCategorias();       // Carga opciones de categoría
+  cargarTallas();           // Carga opciones de talla
+  cargarDepartamentos();    // Carga opciones de ubicación
+  cargarProductos();        // Obtiene y muestra todos los productos
+  inicializarBusqueda();    // Activa búsqueda por botón o Enter
+  inicializarDropdowns();   // Activa comportamiento de los dropdowns
 });
 
-// ========================================
-// 📦 Cargar productos desde la BD
-// ========================================
+// Obtiene productos desde la API y los renderiza
 async function cargarProductos() {
   try {
     const response = await axios.get(`${API_URL}/api/products`);
-    const productos = response.data;
-    const contenedor = document.getElementById("productos-container");
-    contenedor.innerHTML = "";
-
-    productos.forEach(p => {
-      const card = document.createElement("div");
-      card.classList.add("product-card");
-
-      card.innerHTML = `
-        <div class="card">
-          <div class="discount-badge">${p.descuento}% OFF</div>
-          <img src="${p.imagen_url}" alt="${p.nombre_producto}" class="product-img"/>
-          
-          <div class="card-body">
-            <span class="categoria">${p.categoria}</span>
-            <h3>${p.nombre_producto}</h3>
-            
-            <div class="precio">
-              <span class="actual">S/${p.precio}</span>
-              <span class="old">S/${(p.precio * (1 + p.descuento / 100)).toFixed(2)}</span>
-            </div>
-
-            <div class="detalle">
-              <p>Talla ${p.talla} · <span class="estado">Excelente</span></p>
-              <p class="ubicacion">📍 ${p.departamento}</p>
-              <p class="vendedor">Por ${p.nombre_vendedor}</p>
-            </div>
-
-            <div class="acciones">
-              <button class="btn-preview">Pre-visualizar</button>
-              <button class="btn-details">Ver Detalles</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      contenedor.appendChild(card);
-    });
+    todosLosProductos = response.data;
+    productosFiltrados = [...todosLosProductos];
+    renderizarProductos(productosFiltrados);
   } catch (error) {
-    console.error("❌ Error al cargar productos:", error);
+    console.error("Error al cargar productos:", error);
+    mostrarMensajeError();
   }
 }
 
-
-// ========================================
-// 🎨 Renderizar productos en el grid
-// ========================================
+// Muestra los productos en el contenedor principal
 function renderizarProductos(productos) {
-  const container = document.getElementById('productosContainer');
+  const container = document.getElementById('product-container');
   if (!container) return;
 
+  // Si no hay productos, muestra mensaje vacío
   if (!productos || productos.length === 0) {
     container.innerHTML = `<div class="mensaje-vacio"><p>No se encontraron productos</p></div>`;
     return;
   }
 
+  // Inserta las tarjetas HTML generadas
   container.innerHTML = productos.map(crearTarjetaProducto).join('');
-  lucide.createIcons();
+  lucide.createIcons(); // Renderiza íconos SVG
+
+  // Asigna evento a cada botón "Ver detalles"
+  document.querySelectorAll('.btn-ver-detalles').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      verDetalleProducto(id);
+    });
+  });
+
+  // Asigna fallback de imagen si falla la carga
+  document.querySelectorAll('.producto-img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.src = '/assets/images/polo_mujer.png';
+    });
+  });
 }
 
-// ========================================
-// 🧩 Crear tarjeta de producto
-// ========================================
+// Genera el HTML de una tarjeta de producto
 function crearTarjetaProducto(producto) {
   const estrellas = generarEstrellas(producto.valoracion_promedio || 0);
-  const imagenUrl = producto.imagen_url || '/assets/images/placeholder.jpg';
+  const imagenUrl = producto.imagen_url?.includes('assets/')
+    ? `/${producto.imagen_url}`
+    : `/assets/images/${producto.imagen_url || 'placeholder.jpg'}`;
 
   return `
-    <div class="producto-card" data-id="${producto.id_producto}">
-      <div class="producto-imagen">
-        <img src="${imagenUrl}" alt="${producto.nombre_producto}" />
-        <span class="producto-estado ${producto.estado_producto?.toLowerCase()}">${producto.estado_producto}</span>
-      </div>
-      <div class="producto-info">
-        <div class="producto-categoria">${producto.categoria}</div>
-        <h3 class="producto-nombre">${producto.nombre_producto}</h3>
-        <div class="producto-detalles">
-          <span class="producto-talla">Talla: ${producto.talla || 'N/A'}</span>
-          <span class="producto-precio">S/ ${parseFloat(producto.precio).toFixed(2)}</span>
-        </div>
-        <div class="producto-vendedor">
-          <i data-lucide="user" class="icon-small"></i>
-          <span>${producto.nombre_vendedor}</span>
-        </div>
-        <div class="producto-ubicacion">
-          <i data-lucide="map-pin" class="icon-small"></i>
-          <span>${producto.departamento || 'No especificado'}</span>
-        </div>
-        <div class="producto-valoracion">
-          <div class="estrellas">${estrellas}</div>
-          <span class="valoracion-numero">(${producto.total_resenas || 0})</span>
-        </div>
-        <button class="btn-ver-detalles" onclick="verDetalleProducto(${producto.id_producto})">Ver detalles</button>
-      </div>
+  <div class="producto-card" data-id="${producto.id_producto}">
+    <div class="producto-imagen">
+      <img src="${imagenUrl}" alt="${producto.nombre_producto}" class="producto-img" />
+      <span class="producto-estado ${producto.estado_producto?.toLowerCase()}">${producto.estado_producto}</span>
     </div>
+    <div class="producto-info">
+      <div class="producto-categoria">${producto.categoria}</div>
+      <h3 class="producto-nombre">${producto.nombre_producto}</h3>
+      <div class="producto-detalles">
+        <span class="producto-talla">Talla: ${producto.talla || 'N/A'}</span>
+        <span class="producto-precio">S/ ${parseFloat(producto.precio).toFixed(2)}</span>
+      </div>
+      <div class="producto-vendedor">
+        <i data-lucide="user" class="icon-small"></i>
+        <span>${producto.nombre_vendedor}</span>
+      </div>
+      <div class="producto-ubicacion">
+        <i data-lucide="map-pin" class="icon-small"></i>
+        <span>${producto.departamento || 'No especificado'}</span>
+      </div>
+      <div class="producto-valoracion">
+        <div class="estrellas">${estrellas}</div>
+        <span class="valoracion-numero">(${producto.total_resenas || 0})</span>
+      </div>
+      <button class="btn-ver-detalles" data-id="${producto.id_producto}">Ver detalles</button>
+    </div>
+  </div>
   `;
 }
 
-// ========================================
-// ⭐ Generar estrellas de valoración
-// ========================================
+// Genera estrellas visuales según la valoración promedio
 function generarEstrellas(valoracion) {
   const estrellaLlena = '<i data-lucide="star" class="estrella llena"></i>';
   const estrellaMedia = '<i data-lucide="star" class="estrella media"></i>';
@@ -151,9 +124,7 @@ function generarEstrellas(valoracion) {
   return estrellas;
 }
 
-// ========================================
-// 🔍 Aplicar filtros locales (opcional)
-// ========================================
+// Filtra los productos según los filtros activos
 function aplicarFiltros() {
   productosFiltrados = todosLosProductos.filter(producto => {
     const coincideBusqueda = !filtrosActivos.busqueda ||
@@ -162,29 +133,30 @@ function aplicarFiltros() {
 
     const coincideCategoria = !filtrosActivos.categoria || producto.categoria === filtrosActivos.categoria;
     const coincideTalla = !filtrosActivos.talla || producto.talla === filtrosActivos.talla;
+    const coincideDepartamento = !filtrosActivos.departamento || producto.departamento === filtrosActivos.departamento;
 
-    return coincideBusqueda && coincideCategoria && coincideTalla;
+    return coincideBusqueda && coincideCategoria && coincideTalla && coincideDepartamento;
   });
 
   renderizarProductos(productosFiltrados);
 }
-
-// ========================================
-// 📁 Cargar categorías desde la BD
-// ========================================
+// Carga las categorías desde la API y las inserta en el menú
 async function cargarCategorias() {
   try {
-const res = await axios.get(`${API_URL}/api/categories`);
+    const res = await axios.get(`${API_URL}/api/categories`);
     const categorias = res.data;
     const menu = document.getElementById('categoriaMenu');
+    if (!menu) return;
     menu.innerHTML = '';
 
+    // Opción por defecto: todas las categorías
     const todas = document.createElement('div');
     todas.className = 'dropdown-item selected';
     todas.dataset.value = '';
     todas.textContent = 'Todas las categorías';
     menu.appendChild(todas);
 
+    // Inserta cada categoría como opción
     categorias.forEach(cat => {
       const item = document.createElement('div');
       item.className = 'dropdown-item';
@@ -193,10 +165,15 @@ const res = await axios.get(`${API_URL}/api/categories`);
       menu.appendChild(item);
     });
 
+    // Asigna evento de selección y aplica filtro
     menu.querySelectorAll('.dropdown-item').forEach(item => {
       item.addEventListener('click', () => {
-        document.getElementById('categoriaSelected').textContent = item.textContent;
-        document.getElementById('categoriaSelected').dataset.value = item.dataset.value;
+        const selected = document.getElementById('categoriaSelected');
+        if (!selected) return;
+        selected.textContent = item.textContent;
+        selected.dataset.value = item.dataset.value;
+        filtrosActivos.categoria = item.dataset.value;
+        aplicarFiltros();
       });
     });
   } catch (error) {
@@ -204,14 +181,13 @@ const res = await axios.get(`${API_URL}/api/categories`);
   }
 }
 
-// ========================================
-// 📁 Cargar tallas desde la BD
-// ========================================
+// Carga las tallas desde la API y las inserta en el menú
 async function cargarTallas() {
   try {
-const res = await axios.get(`${API_URL}/api/sizes`);
+    const res = await axios.get(`${API_URL}/api/sizes`);
     const tallas = res.data;
     const menu = document.getElementById('tallaMenu');
+    if (!menu) return;
     menu.innerHTML = '';
 
     const todas = document.createElement('div');
@@ -230,8 +206,12 @@ const res = await axios.get(`${API_URL}/api/sizes`);
 
     menu.querySelectorAll('.dropdown-item').forEach(item => {
       item.addEventListener('click', () => {
-        document.getElementById('tallaSelected').textContent = item.textContent;
-        document.getElementById('tallaSelected').dataset.value = item.dataset.value;
+        const selected = document.getElementById('tallaSelected');
+        if (!selected) return;
+        selected.textContent = item.textContent;
+        selected.dataset.value = item.dataset.value;
+        filtrosActivos.talla = item.dataset.value;
+        aplicarFiltros();
       });
     });
   } catch (error) {
@@ -239,14 +219,13 @@ const res = await axios.get(`${API_URL}/api/sizes`);
   }
 }
 
-// ========================================
-// 📁 Cargar departamentos desde la BD
-// ========================================
+// Carga los departamentos desde la API y los inserta en el menú
 async function cargarDepartamentos() {
   try {
-const res = await axios.get(`${API_URL}/api/departments`);
+    const res = await axios.get(`${API_URL}/api/departments`);
     const departamentos = res.data;
     const menu = document.getElementById('departamentoMenu');
+    if (!menu) return;
     menu.innerHTML = '';
 
     const todos = document.createElement('div');
@@ -265,8 +244,12 @@ const res = await axios.get(`${API_URL}/api/departments`);
 
     menu.querySelectorAll('.dropdown-item').forEach(item => {
       item.addEventListener('click', () => {
-        document.getElementById('departamentoSelected').textContent = item.textContent;
-        document.getElementById('departamentoSelected').dataset.value = item.dataset.value;
+        const selected = document.getElementById('departamentoSelected');
+        if (!selected) return;
+        selected.textContent = item.textContent;
+        selected.dataset.value = item.dataset.value;
+        filtrosActivos.departamento = item.dataset.value;
+        aplicarFiltros();
       });
     });
   } catch (error) {
@@ -274,39 +257,16 @@ const res = await axios.get(`${API_URL}/api/departments`);
   }
 }
 
-// ========================================
-// 🔎 Buscar productos con filtros activos
-// ========================================
-async function buscarProductos() {
-  const busqueda = document.getElementById('busqueda').value.trim();
-  const categoria = document.getElementById('categoriaSelected')?.dataset.value || '';
-  const talla = document.getElementById('tallaSelected')?.dataset.value || '';
-  const departamento = document.getElementById('departamentoSelected')?.dataset.value || '';
-
-  try {
-        const res = await axios.get('/api/productos/buscar', {
-      params: { busqueda, categoria, talla, departamento }
-    });
-
-    const productos = res.data;
-    productosFiltrados = productos;
-    renderizarProductos(productosFiltrados);
-  } catch (error) {
-    console.error('Error al buscar productos:', error);
-    mostrarMensajeError();
-  }
-}
-
-// ========================================
-// ⌨️ Inicializar búsqueda por Enter o botón
-// ========================================
+// Inicializa la búsqueda por botón o tecla Enter
 function inicializarBusqueda() {
   const input = document.getElementById('busqueda');
   const btn = document.getElementById('buscarBtn');
-
   if (!input || !btn) return;
 
-  const buscar = () => buscarProductos();
+  const buscar = () => {
+    filtrosActivos.busqueda = input.value.trim();
+    aplicarFiltros();
+  };
 
   btn.addEventListener('click', buscar);
   input.addEventListener('keypress', (e) => {
@@ -314,52 +274,49 @@ function inicializarBusqueda() {
   });
 }
 
-// ========================================
-// 🔍 Ver detalle del producto
-// ========================================
+// Redirecciona al detalle del producto seleccionado
 function verDetalleProducto(id) {
   window.location.href = `/pages/producto-detalle.html?id=${id}`;
 }
 
-// ========================================
-// ⚠️ Mostrar mensaje de error
-// ========================================
+// Muestra mensaje de error si falla la carga de productos
 function mostrarMensajeError() {
-  const container = document.getElementById('productosContainer');
+  const container = document.getElementById('product-container');
   if (!container) return;
 
   container.innerHTML = `
     <div class="mensaje-error">
       <i data-lucide="alert-circle"></i>
       <p>Error al cargar los productos. Intenta de nuevo más tarde.</p>
+      <button id="reintentarCarga">Reintentar</button>
     </div>
   `;
   lucide.createIcons();
+
+  // Permite reintentar la carga de productos
+  document.getElementById('reintentarCarga')?.addEventListener('click', cargarProductos);
 }
 
-// ========================================
-// 🔌 Socket.IO (actualización en tiempo real)
-// ========================================
-if (typeof io !== 'undefined') {
-  const socket = io();
-
-  socket.on('productoActualizado', (productoActualizado) => {
-    const index = todosLosProductos.findIndex(p => p.id_producto === productoActualizado.id_producto);
-    if (index !== -1) {
-      todosLosProductos[index] = productoActualizado;
-      aplicarFiltros();
-    }
-  });
-}
-
-// ========================================
-// 🧭 Inicializar dropdowns (categoría, talla, departamento)
-// ========================================
+// Activa el comportamiento de los dropdowns (mostrar/ocultar)
 function inicializarDropdowns() {
   const dropdowns = document.querySelectorAll('.dropdown-toggle');
   dropdowns.forEach(dropdown => {
     dropdown.addEventListener('click', () => {
       dropdown.classList.toggle('abierto');
     });
+  });
+}
+
+// Escucha eventos en tiempo real desde el servidor (Socket.IO)
+if (typeof io !== 'undefined') {
+  const socket = io();
+
+  // Si un producto se actualiza, se reemplaza en la lista y se re-renderiza
+  socket.on('productoActualizado', (productoActualizado) => {
+    const index = todosLosProductos.findIndex(p => p.id_producto === productoActualizado.id_producto);
+    if (index !== -1) {
+      todosLosProductos[index] = productoActualizado;
+      aplicarFiltros();
+    }
   });
 }

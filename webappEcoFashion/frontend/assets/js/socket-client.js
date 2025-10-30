@@ -17,7 +17,7 @@ class SocketClient {
         }
 
         this.userId = userId;
-        this.socket = io('http://localhost:3001', {
+        this.socket = io('window.API_URL,', { //ANTES-> this.socket = io('http://localhost:3001', (SE CAMBIÓ PARA GARANTIZAR que el cliente Socket.IO se conecte al mismo host que tu API, ya sea local (localhost:3001) o en producción (window.location.origin).)
             transports: ['websocket', 'polling'],
             reconnection: true,
             reconnectionDelay: 1000,

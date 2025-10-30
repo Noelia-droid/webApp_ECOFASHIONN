@@ -171,7 +171,7 @@ function markActiveLink() {
         '/pages/dashboard_PEDIDOS.html': 'Mis Pedidos',
         '/pages/dashboard_HISTORIAL.html': 'Historial',
         '/pages/dashboard_DESEOS.html': 'Lista de Deseos',
-        '/pages/dashboard_REEMBOLSOS.html': 'Reembolsos',
+        '/pages/dashboard_REEMBOLSO.html': 'Reembolsos',
         '/pages/dashboard_VALORACIONES.html': 'Valoraciones',
         '/pages/dashboard_MENSAJES.html': 'Mensajes',
         '/pages/dashboard_PERFIL.html': 'Perfil',

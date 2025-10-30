@@ -49,9 +49,8 @@
         </div>
     </section>
 
-    <!--PRODUCTOS-->
+    <!-- PRODUCTOS -->
     <!-- Filtros superiores -->
-    <!-- BARRA DE FILTROS - Reemplazar en tu marketplace.html -->
     <section class="barra-filtros">
         <!-- Campo de búsqueda -->
         <div class="campo-busqueda">
@@ -66,7 +65,7 @@
                 <div data-lucide="chevron-down"></div>
             </div>
             <div class="dropdown-menu" id="categoriaMenu">
-                <!-- Se llenará dinámicamente -->
+                <!-- Se llenará dinámicamente desde marketplace.js -->
             </div>
         </div>
 
@@ -77,6 +76,7 @@
                 <div data-lucide="chevron-down"></div>
             </div>
             <div class="dropdown-menu" id="tallaMenu">
+                <!-- Opciones estáticas de talla -->
                 <div class="dropdown-item selected" data-value="">Todas las tallas</div>
                 <div class="dropdown-item" data-value="XS">XS</div>
                 <div class="dropdown-item" data-value="S">S</div>
@@ -94,6 +94,7 @@
                 <div data-lucide="chevron-down"></div>
             </div>
             <div class="dropdown-menu" id="departamentoMenu">
+                <!-- Opciones estáticas de departamento -->
                 <div class="dropdown-item selected" data-value="">Todos los departamentos</div>
                 <div class="dropdown-item" data-value="Lima">Lima</div>
                 <div class="dropdown-item" data-value="Arequipa">Arequipa</div>
@@ -119,12 +120,10 @@
         </div>
 
         <!-- Botón Buscar -->
-        <button id="buscarBtn">Buscar</button>
-    </section>
 
-    <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
-    <div id="productos-container" class="grid-productos"></div>
-    <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
+        <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
+        <div id="product-container" class="grid-productos"></div>
+        <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
     </section>
 
     <script src="/assets/js/axios.min.js"></script>
@@ -141,6 +140,7 @@
         <script src="/socket.io/socket.io.js"></script> <!--CLIENTE LOCAL-->
         <!-- Configuración global -->
         <script src="/assets/js/config.js"></script>
+        <script src="/assets/js/socket-client.js"></script>
         <!-- Scripts que usan socket -->
         <script src="/assets/js/marketplace.js"></script>
 </body>

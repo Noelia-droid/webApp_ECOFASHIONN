@@ -22,14 +22,7 @@ const ordersRoutes = require('./routes/orders');
 const app = express();
 const server = http.createServer(app); // ✅ Servidor HTTP compatible con Socket.IO
 
-// ✅ Inicializar Socket.IO y exponerlo a los controladores
-const io = require('socket.io')(server, {
-    cors: {
-        origin: 'http://localhost:3001', // Ajusta si usas otro puerto o dominio
-        methods: ['GET', 'POST']
-    }
-});
-app.set('io', io); // ✅ Disponible como req.app.get('io')
+
 
 //---------------BD!--------------------
 const { connectDB } = require('./config/database');
@@ -38,7 +31,7 @@ connectDB();
 //------------------------
 
 // ===================================================================
-// 🔐 Seguridad
+// Seguridad
 // ===================================================================
 app.use(helmetConfig);
 
@@ -55,7 +48,7 @@ const registerLimiter = rateLimit({
 });
 
 // ===================================================================
-// ⚙️ Middleware general
+// Middleware general
 // ===================================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -79,7 +72,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // ===================================================================
-// 📦 Rutas API
+// Rutas API
 // ===================================================================
 
 // Rutas de pedidos
@@ -101,7 +94,7 @@ app.use('/api/sizes', sizesRoutes);
 app.use('/api/departments', departmentsRoutes);
 
 // ===================================================================
-// 🧭 Rutas de páginas públicas
+// Rutas de páginas públicas
 // ===================================================================
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
@@ -119,7 +112,7 @@ app.get('/marketplace', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/marketplace.html'));
 });
 // ===================================================================
-// 🔐 Middleware de protección para rutas privadas
+// Middleware de protección para rutas privadas
 // ===================================================================
 const requireAuth = (req, res, next) => {
     if (!req.session.user && !req.user) {
@@ -128,13 +121,21 @@ const requireAuth = (req, res, next) => {
     next();
 };
 
-// ✅ Dashboard privado del usuario (carrito, etc.)
-app.get('/pages/dashboard_USER(CARRITO).html', requireAuth, (req, res) => {
+// Dashboard privado del usuario (carrito, etc.)
+app.get('/pages/dashboard_COMPRADOR(CARRITO).html', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/pages/dashboard_USER(CARRITO).html'));
 });
 
+app.get('/pages/dashboard_COMPRADOR(HISTORIAL).html', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/pages/dashboard_USER(HISTORIAL).html'));
+});
+
+app.get('/pages/dashboard_COMPRADOR(REEMBOLSOS).html', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/pages/dashboard_USER(REEMBOLSOS).html'));
+});
+
 // ===================================================================
-// 🔑 Rutas de Autenticación
+// Rutas de Autenticación
 // ===================================================================
 app.post('/api/login', loginLimiter, authController.login);
 app.post('/api/register', registerLimiter, authController.register);
@@ -142,7 +143,7 @@ app.get('/auth/user', authController.getCurrentUser);
 app.post('/auth/logout', authController.logout);
 
 // ===================================================================
-// 🔐 Autenticación con Google OAuth
+// Autenticación con Google OAuth
 // ===================================================================
 app.get('/auth/google', loginLimiter,
     passport.authenticate('google', { scope: ['profile', 'email'] })
@@ -171,7 +172,7 @@ app.get('/auth/google/callback',
 );
 
 // ===================================================================
-// 👤 Ruta de usuario por ID hasheado
+// Ruta de usuario por ID hasheado
 // ===================================================================
 app.get('/api/user/:hashedId', requireAuth, async (req, res) => {
     try {
@@ -197,7 +198,7 @@ app.get('/api/user/:hashedId', requireAuth, async (req, res) => {
 });
 
 // ===================================================================
-// 🚀 Iniciar servidor con Socket.IO
+// Iniciar servidor con Socket.IO
 // ===================================================================
 const PORT = process.env.PORT || 3001;
 
@@ -221,3 +222,4 @@ connectDB().then(() => {
     console.error('❌ No se pudo iniciar el servidor:', err);
     process.exit(1);
 });
+

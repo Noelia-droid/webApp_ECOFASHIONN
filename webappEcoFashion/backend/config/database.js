@@ -36,16 +36,16 @@ const connectDB = async () => {
         if (!pool) {
             console.log('🔌 Intentando conectar a SQL Server...');
             pool = await sql.connect(config);
-            console.log('✅ Conectado a SQL Server:', process.env.DB_DATABASE);
+            console.log('Conectado a SQL Server:', process.env.DB_DATABASE);
             
             // Test de conexión
             const result = await pool.request().query('SELECT @@VERSION AS version');
-            console.log('📊 Versión de SQL Server:', result.recordset[0].version.split('\n')[0]);
+            console.log('Versión de SQL Server:', result.recordset[0].version.split('\n')[0]);
         }
         return pool;
     } catch (err) {
-        console.error('❌ Error conectando a SQL Server:', err.message);
-        console.error('📝 Detalles:', {
+        console.error('Error conectando a SQL Server:', err.message);
+        console.error('Detalles:', {
             code: err.code,
             server: config.server,
             database: config.database
@@ -67,10 +67,10 @@ const closeDB = async () => {
         if (pool) {
             await pool.close();
             pool = null;
-            console.log('✅ Conexión a BD cerrada');
+            console.log('Conexión a BD cerrada');
         }
     } catch (err) {
-        console.error('❌ Error cerrando conexión:', err);
+        console.error('Error cerrando conexión:', err);
     }
 };
 

@@ -22,7 +22,6 @@ main {
   transition: margin-left 0.3s ease;
 }
 
-
 body.sidebar-collapsed .historycontainer {
   margin-left: 30px;
 }
@@ -40,9 +39,11 @@ body.sidebar-collapsed .historycontainer {
   color: #2c2521;
   margin: 0;
 }
+
 .history-title {
   display: flex;
   align-items: center;
+  margin-bottom:15px;
   gap: 11px; /* Espacio entre ícono y texto */
 }
 
@@ -69,10 +70,10 @@ body.sidebar-collapsed .historycontainer {
   flex: 1;
   min-width: 180px;
   max-width: 260px;
-  padding: 3px 28px;
+  padding: 9px 28px;
   background-color: #ECE7DF;
   border: none;
-  border-radius: 10px;
+  border-radius: 9px;
   font-weight: 500;
   font-size: 15px;
   color: #7e7167;
@@ -88,7 +89,7 @@ body.sidebar-collapsed .historycontainer {
 }
 .tabs-wrapper {
   background-color: #ECE7DF;
-  border-radius: 16px;
+  border-radius: 13px;
   padding: 7px 7px 7px;
   border: 1px solid #e7e1da;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
@@ -119,13 +120,6 @@ body.sidebar-collapsed .historycontainer {
   margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 1px solid #f0ebe5;
-}
-
-.pedido-info h3 {
-  font-size: 19px;
-  font-weight: 600;
-  color: #2c2521;
-  margin: 0 0 10px 0;
 }
 
 .pedido-fecha {
