@@ -48,14 +48,14 @@ exports.register = async (req, res) => {
       });
     }
 
-    console.log('🔐 Hasheando contraseña...');
+    console.log('Hasheando contraseña...');
     const hashedPassword = await argon2.hash(password, {
       type: argon2.argon2id,
       memoryCost: 65536,
       timeCost: 3,
       parallelism: 4
     });
-    console.log('✅ Contraseña hasheada');
+    console.log('Contraseña hasheada');
 
     const result = await pool.request()
       .input('nombre', sql.NVarChar, nombre)
@@ -88,7 +88,7 @@ exports.register = async (req, res) => {
       email: newUser.correo
     });
 
-    console.log('✅ Usuario registrado:', email, '| ID:', encodeUserId(newUser.id_usuario));
+    console.log('Usuario registrado:', email, '| ID:', encodeUserId(newUser.id_usuario));
 
     res.status(201).json({
       success: true,
@@ -111,7 +111,7 @@ exports.register = async (req, res) => {
 };
 
 //==========================================
-// 🔐 LOGIN DE USUARIO
+// LOGIN DE USUARIO
 //==========================================
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -155,14 +155,14 @@ exports.login = async (req, res) => {
       rol: user.rol
     };
 
-    // 🔔 Emitir evento de login vía Socket.IO
+    // Emitir evento de login vía Socket.IO
     const io = req.app.get('io');
     io.emit('usuario:login', {
       nombre: user.nombre_completo,
       email: user.correo
     });
 
-    console.log('✅ Login exitoso:', email, '| ID:', encodeUserId(user.id_usuario));
+    console.log('Login exitoso:', email, '| ID:', encodeUserId(user.id_usuario));
 
     res.json({
       success: true,
@@ -175,7 +175,7 @@ exports.login = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ Error en login:', error);
+    console.error('Error en login:', error);
     res.status(500).json({
       success: false,
       message: 'Error del servidor'

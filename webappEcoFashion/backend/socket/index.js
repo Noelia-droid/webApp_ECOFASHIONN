@@ -11,7 +11,7 @@ function initializeSocket(server) {
     }
   });
 
-  socketController(io); // ✅ Conecta el controlador
+  socketController(io); //Conecta el controlador
 }
 
 function getIO() {

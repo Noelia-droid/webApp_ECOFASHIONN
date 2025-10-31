@@ -24,5 +24,5 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-// ✅ Hacerlo accesible globalmente
+// Hacerlo accesible globalmente
 window.axiosInstance = axiosInstance;

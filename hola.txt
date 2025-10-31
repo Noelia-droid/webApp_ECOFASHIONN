@@ -173,6 +173,6 @@ npm run dev
 PASOS PARA EL GIT PUSH DESDE GIT BASH(CON O SIN REPOSITO CREADO):
 git init   -> inicializa el repositorio
 git add .  -> Agrega los archivos
-git commit - "Commit de cambios"  -> Se describen los cambios
+git commit -m "Commit de cambios"  -> Se describen los cambios
 git remode add origin https://github.com/usuario/repositorio.git  -> Se enlaza con el repositorio(url del repositorio de git)
 git push -u origin main   -> Se hace push al repositorio nuevo, si la rama está en master se cambia "main" por "master", de igual forma si es otra rama

@@ -2,16 +2,16 @@
 require('dotenv').config();
 
 const express = require('express');
-const http = require('http'); // ✅ Para Socket.IO
+const http = require('http'); 
 const path = require('path');
 const session = require('express-session');
 const rateLimit = require('express-rate-limit');
 const { passport } = require('./config/passport');
 const helmetConfig = require('./config/security');
-const { initializeSocket } = require('./socket'); // ✅ Socket.IO
+const { initializeSocket, getIO } = require('./socket');
 const authController = require('./controllers/authController');
 
-const { encodeUserId, decodeUserId } = require('./config/hashids'); // ✅ Modularizado
+const { encodeUserId, decodeUserId } = require('./config/hashids'); 
 
 const departmentsRoutes = require('./routes/departments');
 const categoriesRoutes = require('./routes/categories');
@@ -20,7 +20,7 @@ const sizesRoutes = require('./routes/sizes');
 const ordersRoutes = require('./routes/orders');
 
 const app = express();
-const server = http.createServer(app); // ✅ Servidor HTTP compatible con Socket.IO
+const server = http.createServer(app); 
 
 
 
@@ -197,14 +197,16 @@ app.get('/api/user/:hashedId', requireAuth, async (req, res) => {
     }
 });
 
+
+module.exports = { initializeSocket };
 // ===================================================================
 // Iniciar servidor con Socket.IO
 // ===================================================================
 const PORT = process.env.PORT || 3001;
 
 connectDB().then(() => {
-    initializeSocket(server); // ✅ Activar lógica de eventos Socket.IO
-
+    initializeSocket(server);
+    app.set('io', getIO());
     server.listen(PORT, () => {
         console.log(`================================================`);
         console.log(`Servidor corriendo en http://localhost:${PORT}`);

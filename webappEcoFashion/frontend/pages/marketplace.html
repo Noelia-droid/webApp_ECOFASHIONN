@@ -51,80 +51,114 @@
 
     <!-- PRODUCTOS -->
     <!-- Filtros superiores -->
-    <section class="barra-filtros">
+    <div class="filters-bar">
         <!-- Campo de búsqueda -->
-        <div class="campo-busqueda">
+        <div class="search-field">
             <div data-lucide="search"></div>
-            <input type="text" id="busqueda" placeholder="Buscar prendas..." />
+            <input type="text" id="searchInput" placeholder="Buscar prendas..." />
         </div>
 
         <!-- Dropdown personalizado de Categoría -->
-        <div class="dropdown-personalizado">
-            <div class="dropdown-toggle" id="categoriaToggle">
-                <span id="categoriaSelected">Todas las categorías</span>
+        <div class="custom-dropdown">
+            <div class="dropdown-toggle" id="categoryToggle">
+                <span id="categorySelected">Todas las categorías</span>
                 <div data-lucide="chevron-down"></div>
             </div>
-            <div class="dropdown-menu" id="categoriaMenu">
+            <div class="dropdown-menu" id="categoryMenu">
                 <!-- Se llenará dinámicamente desde marketplace.js -->
             </div>
         </div>
 
         <!-- Dropdown personalizado de Talla -->
-        <div class="dropdown-personalizado">
-            <div class="dropdown-toggle" id="tallaToggle">
-                <span id="tallaSelected">Todas las tallas</span>
+        <div class="custom-dropdown">
+            <div class="dropdown-toggle" id="sizeToggle">
+                <span id="sizeSelected">Todas las tallas</span>
                 <div data-lucide="chevron-down"></div>
             </div>
-            <div class="dropdown-menu" id="tallaMenu">
-                <!-- Opciones estáticas de talla -->
-                <div class="dropdown-item selected" data-value="">Todas las tallas</div>
-                <div class="dropdown-item" data-value="XS">XS</div>
-                <div class="dropdown-item" data-value="S">S</div>
-                <div class="dropdown-item" data-value="M">M</div>
-                <div class="dropdown-item" data-value="L">L</div>
-                <div class="dropdown-item" data-value="XL">XL</div>
-                <div class="dropdown-item" data-value="XXL">XXL</div>
+            <div class="dropdown-menu" id="sizeMenu">
+                <!-- Se llenará dinámicamente desde marketplace.js -->
             </div>
         </div>
 
         <!-- Dropdown personalizado de Departamento -->
-        <div class="dropdown-personalizado">
-            <div class="dropdown-toggle" id="departamentoToggle">
-                <span id="departamentoSelected">Todos los departamentos</span>
+        <div class="custom-dropdown">
+            <div class="dropdown-toggle" id="departmentToggle">
+                <span id="departmentSelected">Todos los departamentos</span>
                 <div data-lucide="chevron-down"></div>
             </div>
-            <div class="dropdown-menu" id="departamentoMenu">
-                <!-- Opciones estáticas de departamento -->
-                <div class="dropdown-item selected" data-value="">Todos los departamentos</div>
-                <div class="dropdown-item" data-value="Lima">Lima</div>
-                <div class="dropdown-item" data-value="Arequipa">Arequipa</div>
-                <div class="dropdown-item" data-value="Cusco">Cusco</div>
-                <div class="dropdown-item" data-value="La Libertad">La Libertad</div>
-                <div class="dropdown-item" data-value="Piura">Piura</div>
-                <div class="dropdown-item" data-value="Lambayeque">Lambayeque</div>
-                <div class="dropdown-item" data-value="Junín">Junín</div>
-                <div class="dropdown-item" data-value="Ica">Ica</div>
-                <div class="dropdown-item" data-value="Áncash">Áncash</div>
-                <div class="dropdown-item" data-value="Cajamarca">Cajamarca</div>
-                <div class="dropdown-item" data-value="Puno">Puno</div>
-                <div class="dropdown-item" data-value="Huánuco">Huánuco</div>
-                <div class="dropdown-item" data-value="Ayacucho">Ayacucho</div>
-                <div class="dropdown-item" data-value="San Martín">San Martín</div>
-                <div class="dropdown-item" data-value="Ucayali">Ucayali</div>
-                <div class="dropdown-item" data-value="Loreto">Loreto</div>
-                <div class="dropdown-item" data-value="Tacna">Tacna</div>
-                <div class="dropdown-item" data-value="Moquegua">Moquegua</div>
-                <div class="dropdown-item" data-value="Tumbes">Tumbes</div>
-                <div class="dropdown-item" data-value="Amazonas">Amazonas</div>
+            <div class="dropdown-menu" id="departmentMenu">
+                <!-- Se llenará dinámicamente desde marketplace.js -->
             </div>
         </div>
 
         <!-- Botón Buscar -->
+        <button id="searchBtn" class="btn-search">Buscar</button>
+    </div>
 
-        <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
-        <div id="product-container" class="grid-productos"></div>
-        <!-- Los productos se cargarán aquí dinámicamente desde la base de datos -->
-    </section>
+    <!-- Grid de productos -->
+    <div id="products-container" class="products-grid">
+        <!-- Las tarjetas de productos se renderizan aquí -->
+    </div>
+
+    <!-- GRID DE PRODUCTOS (se llenará dinámicamente) -->
+    <div class="products-grid" id="products-container"></div>
+
+    <!--OVERLAY DE PRODUCTOS-->
+    <div id="seller-overlay" class="seller-overlay hidden">
+        <div class="seller-container">
+            <div class="seller-image-wrapper">
+                <div class="seller-image-bg">
+                    <div class="chaqueta-de"></div>
+                </div>
+            </div>
+            <div class="seller-info-wrapper">
+                <div class="seller-heading-wrapper">
+                    <div class="seller-heading">
+                        <div class="text-wrapper" id="overlay-nombre">Chaqueta de mezclilla vintage</div>
+                    </div>
+                </div>
+            </div>
+            <p class="seller-seller" id="overlay-vendedor">Vendido por María G.</p>
+            <div class="seller-sold-count" id="overlay-vendidos">(150+ vendidos)</div>
+            <div class="seller-rating">
+                <div class="seller-rating-icon"><img class="vector" src="img/vector.svg" /></div>
+                <div class="seller-rating-value">
+                    <div class="text" id="overlay-rating">4.8</div>
+                </div>
+            </div>
+            <div class="seller-price-box"></div>
+            <div class="text-wrapper-3">Precio antes de envío</div>
+            <div class="seller-discount">
+                <div class="text-2" id="overlay-descuento">38% OFF</div>
+            </div>
+            <div class="seller-price-original" id="overlay-precio-original">S/50</div>
+            <div class="seller-price-final" id="overlay-precio">S/30</div>
+            <div class="text-wrapper-5">Condición:</div>
+            <div class="seller-condition">
+                <div class="text-6" id="overlay-condicion">Excelente</div>
+            </div>
+            <div class="text-wrapper-7">Categoría:</div>
+            <div class="text-wrapper-8" id="overlay-ubicacion">Lima</div>
+            <div class="seller-cart-button">
+                <div class="SVG-margin">
+                    <div class="SVG"><img class="component-4" src="img/component-1.svg" /></div>
+                </div>
+                <div class="text-wrapper-12">
+                    <div class="text-4">Agregar al carrito</div>
+                </div>
+            </div>
+            <div class="seller-fav-button">
+                <div class="SVG-margin">
+                    <div class="SVG"><img class="component-4" src="img/component-1.svg" /></div>
+                </div>
+                <div class="text-wrapper-12">
+                    <div class="text-5">Agregar a favoritos</div>
+                </div>
+            </div>
+            <button id="closeOverlay" class="close-overlay">×</button>
+        </div>
+    </div>
+
 
     <script src="/assets/js/axios.min.js"></script>
 

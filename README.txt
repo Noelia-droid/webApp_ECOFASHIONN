@@ -3,8 +3,9 @@
 Proyecto universitario para EL CURSO INTEGRADOR.
 
 ## Requisitos
-- Node.js versión XX
+- Node.js versión 24
 - Navegador moderno (Chrome, Firefox, etc.)
+- SQL 22 manager & Configuration manager (Dev)
 
 ## Instalación
 ```bash
@@ -32,6 +33,10 @@ cd backend
 npm run dev
 
 #INSTALAR:
+--Descargar node
+npm install
+
+
 npm install json-server
 # Instalar las 3 librerías de seguridad
 npm install argon2 helmet hashids
